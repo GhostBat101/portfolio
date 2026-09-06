@@ -1,0 +1,20 @@
+﻿/**
+ * SplitTextStyles: Container and span styling for Splitting.js and GSAP animated characters.
+ * Communicates with: SplitTextReveal.tsx and typography.css.
+ */
+.container {
+  display: block;
+  overflow: hidden;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
