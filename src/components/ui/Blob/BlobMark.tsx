@@ -1,4 +1,4 @@
-﻿/**
+/**
  * BlobMark: Expressive-tier organic SVG blob element for deliberate editorial hero marks.
  * Communicates with: LandingSection.tsx, tokens.css, and AmbientEffects.tsx.
  */
