@@ -1,6 +1,6 @@
 /**
  * TemplateTextFirstParallax: Project layout with narrative text leading and parallax-driven media frame.
- * Communicates with: Templates.module.css, ParallaxLayer.tsx, Button.tsx, and Badge.tsx.
+ * Communicates with: Templates.module.css, MediaFrame.tsx, ParallaxLayer.tsx, Button.tsx, and Badge.tsx.
  */
 import React from 'react';
 import { Project } from '@/types/project';
@@ -8,7 +8,7 @@ import { ParallaxLayer } from '@/components/motion/ParallaxLayer';
 import { Button } from '@/components/ui/Button/Button';
 import { Badge, BadgeTone } from '@/components/ui/Badge/Badge';
 import { ExternalLinkIcon } from '@/components/ui/Icons/CustomIcons';
-import { getAsymmetricRadius } from '@/utils/asymmetricRadius';
+import { MediaFrame } from '@/components/ui/MediaFrame/MediaFrame';
 import styles from './Templates.module.css';
 
 export interface TemplateProps {
@@ -19,7 +19,6 @@ export interface TemplateProps {
 const BADGE_TONES: readonly BadgeTone[] = ['ochre', 'aqua', 'terracotta'];
 
 export const TemplateTextFirstParallax: React.FC<TemplateProps> = ({ project, indexNumber }) => {
-  const mediaRadius = getAsymmetricRadius(`${project.slug}-parallax`, 'large');
   const stackItems = project.meta.stack
     ? project.meta.stack.split(',').map((s) => s.trim()).filter(Boolean)
     : [];
@@ -94,16 +93,13 @@ export const TemplateTextFirstParallax: React.FC<TemplateProps> = ({ project, in
           <div>
             {project.cover && (
               <ParallaxLayer speed={0.25}>
-                <div className={styles.mediaFrame} style={{ borderRadius: mediaRadius }}>
-                  <img
-                    src={project.cover.src}
-                    alt={project.meta.title}
-                    className={styles.mediaImage}
-                  />
-                  <div className={styles.mediaCaption}>
-                    PARALLAX SPECIMEN // {project.cover.name}
-                  </div>
-                </div>
+                <MediaFrame
+                  asset={project.cover}
+                  alt={project.meta.title}
+                  seed={`${project.slug}-parallax`}
+                  radiusSize="large"
+                  captionPrefix="PARALLAX SPECIMEN"
+                />
               </ParallaxLayer>
             )}
           </div>
