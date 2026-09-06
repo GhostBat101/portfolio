@@ -1,136 +1,64 @@
 [
   {
-    "slug": "campfire-notes",
+    "slug": "flocon-resort",
     "meta": {
-      "title": "Campfire Notes",
+      "title": "Flocon Resort",
       "order": 1,
-      "year": "2025",
-      "role": "Full-stack developer",
-      "stack": "React 18, Node.js, WebGL, PostgreSQL",
-      "live": "https://campfire-notes.ghostbat101.dev",
-      "repo": "https://github.com/GhostBat101/campfire-notes",
+      "year": "2026",
+      "role": "Creative Technologist & 3D Systems Architect",
+      "stack": "Three.js, React Three Fiber, GSAP, Next.js",
+      "live": "https://ghostbat101.github.io/flocon-resort/",
+      "repo": "https://github.com/GhostBat101/flocon-resort",
       "featured": true
     },
     "overview": [
-      "A focused note system designed for spoken thinking.",
-      "Voice input turns into structured markdown records instantly.",
-      "Zero latency offline persistence through local indexed databases.",
-      "Built solo from initial prototype to deployment."
+      "Flocon Resort delivers an interactive 3D digital hospitality environment rendered through high-performance WebGL viewports.",
+      "The architectural experience merges procedural canvas dynamics with GPU-accelerated spatial camera choreography."
     ],
     "details": [
-      "Audio transcription executes locally using client-side WebAssembly models.",
-      "Custom audio spectrum visualization runs on an isolated WebGL canvas.",
-      "Database sync leverages Conflict-Free Replicated Data Types for offline-first reliability.",
-      "Interface layout adheres strictly to an 8px editorial paste-up grid."
+      "React Three Fiber coordinates isolated 3D scene graphs with declarative component lifecycles.",
+      "Custom Three.js shader materials simulate winter atmospheric illumination with strict frame-budget conservation.",
+      "GSAP timelines synchronize camera orbits, lighting states, and spatial text reveals without layout trashing.",
+      "Canvas Confetti effects execute particle simulations during key interaction waypoints."
     ],
     "cover": {
-      "src": "projects/campfire-notes/media/cover.svg",
-      "type": "image",
-      "name": "cover.svg"
+      "src": "projects/flocon-resort/media/Screen_Recording_2026-09-06_203457-web.mp4",
+      "type": "video",
+      "name": "Screen Recording 2026-09-06 203457.mp4",
+      "poster": "projects/flocon-resort/media/Screen_Recording_2026-09-06_203457-poster.jpg"
     },
-    "gallery": [
-      {
-        "src": "projects/campfire-notes/media/01.svg",
-        "type": "image",
-        "name": "01.svg"
-      }
-    ],
+    "gallery": [],
     "template": "editorial-stack"
   },
   {
-    "slug": "zenith-editor",
+    "slug": "vintage-camera-bd",
     "meta": {
-      "title": "Zenith Code Editor",
+      "title": "Vintage Camera BD",
       "order": 2,
-      "year": "2025",
-      "role": "Systems & UI Engineer",
-      "stack": "TypeScript, WebAssembly, Rust, Canvas",
-      "live": "https://zenith-editor.ghostbat101.dev",
-      "repo": "https://github.com/GhostBat101/zenith-editor",
+      "year": "2026",
+      "role": "Full-Stack Systems Engineer",
+      "stack": "Next.js, TypeScript, PostgreSQL, PL/pgSQL",
+      "live": "https://vintage-camera-bd.ghostbat-workspace.workers.dev/",
+      "repo": "https://github.com/GhostBat101/Vintage_Camera_BD",
       "featured": true
     },
     "overview": [
-      "A lightweight code editor rendering syntax trees on GPU canvases.",
-      "Text buffer parsing runs on Rust compiled to WebAssembly.",
-      "Starts instantly in under forty milliseconds on cold launch.",
-      "Engineered for minimal memory consumption across large repositories."
+      "Vintage Camera BD establishes an archival database and marketplace platform dedicated to analog cameras and mechanical optics.",
+      "The system integrates high-efficiency Next.js App Router streaming with relational persistence across complex horological metadata."
     ],
     "details": [
-      "Piece table data structure ensures constant-time insertion and deletion.",
-      "Custom syntax highlighting engine tokenizes code via tree-sitter bindings.",
-      "GPU font atlas renders crisp glyphs on high-DPI displays.",
-      "Extensible plugin architecture communicates over asynchronous worker channels."
+      "Next.js App Router renders static product sheets on edge servers with incremental cache invalidation.",
+      "PostgreSQL database schemas maintain relational integrity across lens specifications, shutter formats, and historical production eras.",
+      "Custom PL/pgSQL database functions accelerate multi-attribute filtering and text indexing across vintage inventory.",
+      "Typed data contracts ensure zero runtime schema mismatches between administrative catalog inputs and client browsing surfaces."
     ],
     "cover": {
-      "src": "projects/zenith-editor/media/cover.svg",
-      "type": "image",
-      "name": "cover.svg"
+      "src": "projects/vintage-camera-bd/media/Recording_2026-09-04_151749-web.mp4",
+      "type": "video",
+      "name": "Recording 2026-09-04 151749.mp4",
+      "poster": "projects/vintage-camera-bd/media/Recording_2026-09-04_151749-poster.jpg"
     },
     "gallery": [],
     "template": "media-left"
-  },
-  {
-    "slug": "flow-state",
-    "meta": {
-      "title": "Flow State",
-      "order": 3,
-      "year": "2024",
-      "role": "Frontend Architect",
-      "stack": "React 18, GSAP, Canvas, Web Audio",
-      "live": "https://flow-state.ghostbat101.dev",
-      "repo": "https://github.com/GhostBat101/flow-state",
-      "featured": false
-    },
-    "overview": [
-      "An ambient productivity environment generating generative soundscapes.",
-      "Binaural audio frequencies sync with real-time breathing visualizers.",
-      "Zero intrusive notifications or distracting dashboard widgets.",
-      "Designed to maintain deep concentration through long programming blocks."
-    ],
-    "details": [
-      "Web Audio API synthesizes pink noise and harmonic drone chords algorithmically.",
-      "Kinetic typography pulses subtly in rhythm with heart-rate intervals.",
-      "Local state persistence caches custom audio mix presets across sessions.",
-      "Color temperature shifts dynamically based on local solar elevation."
-    ],
-    "cover": {
-      "src": "projects/flow-state/media/cover.svg",
-      "type": "image",
-      "name": "cover.svg"
-    },
-    "gallery": [],
-    "template": "editorial-stack"
-  },
-  {
-    "slug": "synth-wave",
-    "meta": {
-      "title": "Synth Wave GL",
-      "order": 4,
-      "year": "2024",
-      "role": "Creative Technologist",
-      "stack": "WebGL 2.0, GLSL, Web Audio, TypeScript",
-      "live": "https://synthwave.ghostbat101.dev",
-      "repo": "https://github.com/GhostBat101/synth-wave-gl",
-      "featured": true
-    },
-    "overview": [
-      "A real-time raymarched visualizer built with custom fragment shaders.",
-      "Procedural terrain generates infinite wireframe horizons on the GPU.",
-      "Audio frequency bins drive shader uniforms without CPU bottlenecks.",
-      "Optimized to render sixty frames per second on mobile chipsets."
-    ],
-    "details": [
-      "Signed distance fields define geometric primitives in screen space.",
-      "Volumetric lighting calculates light absorption through marching loops.",
-      "Fast Fourier Transform buffers map low frequencies to terrain heights.",
-      "Post-processing pipeline incorporates CRT scanline and bloom passes."
-    ],
-    "cover": {
-      "src": "projects/synth-wave/media/cover.svg",
-      "type": "image",
-      "name": "cover.svg"
-    },
-    "gallery": [],
-    "template": "full-bleed"
   }
 ]
