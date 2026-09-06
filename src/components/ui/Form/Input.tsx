@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Input: Stamped text input and textarea component with asymmetric corners and hard-offset focus.
  * Communicates with: Form.module.css, asymmetricRadius.ts, and ContactSection.tsx.
  */
