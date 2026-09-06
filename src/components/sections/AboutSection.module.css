@@ -1,0 +1,122 @@
+/**
+ * AboutSectionStyles: Editorial thesis section with risograph typography and statement cards.
+ * Communicates with: AboutSection.tsx, tokens.css, and typography.css.
+ */
+.about {
+  border-bottom: var(--border-ink);
+  padding: 6rem 0;
+  position: relative;
+}
+
+.grid {
+  display: grid;
+  gap: 3.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1.3fr;
+    gap: 4.5rem;
+  }
+}
+
+.leadCol {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.kicker {
+  color: var(--color-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.title {
+  color: var(--color-primary);
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.specimenBox {
+  background-color: var(--color-surface-container);
+  border: var(--border-ink);
+  box-shadow: var(--shadow-structural-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.specimenHeader {
+  align-items: center;
+  border-bottom: var(--border-ink-thin);
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+}
+
+.specimenLabel {
+  color: var(--color-primary);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.specimenText {
+  color: var(--color-neutral);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.statementsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.statementCard {
+  background-color: var(--color-surface);
+  border: var(--border-ink);
+  box-shadow: var(--shadow-stamped);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.75rem 2rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.statementCard:hover {
+  box-shadow: var(--shadow-structural-lg);
+  transform: translate(-1px, -1px);
+}
+
+.statementTag {
+  color: var(--color-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.statementContent {
+  color: var(--color-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.45;
+  margin: 0;
+}
