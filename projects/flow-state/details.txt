@@ -1,0 +1,4 @@
+﻿Web Audio API synthesizes pink noise and harmonic drone chords algorithmically.
+Kinetic typography pulses subtly in rhythm with heart-rate intervals.
+Local state persistence caches custom audio mix presets across sessions.
+Color temperature shifts dynamically based on local solar elevation.
