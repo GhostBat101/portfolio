@@ -4,12 +4,12 @@
 GEMINI.md
 AGENTS.md
 CLAUDE.md
-.agents/rules/
-.agent/rules/
-.claude/rules/
-.cursor/rules/
-.gemini/rules/
-.vscode/rules/
+.agents/
+.agent/
+.claude/
+.cursor/
+.gemini/
+.vscode/
 
 # Dependencies
 node_modules/
