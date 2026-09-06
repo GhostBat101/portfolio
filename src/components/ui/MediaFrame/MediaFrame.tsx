@@ -141,6 +141,9 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({
       ref={containerRef}
       className={`${styles.frameContainer} ${className}`}
       style={{ borderRadius: computedRadius }}
+      data-playing={isPlaying}
+      data-hover-capable={isHoverCapable}
+      data-media-type={asset.type}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
