@@ -1,4 +1,0 @@
-﻿Signed distance fields define geometric primitives in screen space.
-Volumetric lighting calculates light absorption through marching loops.
-Fast Fourier Transform buffers map low frequencies to terrain heights.
-Post-processing pipeline incorporates CRT scanline and bloom passes.
