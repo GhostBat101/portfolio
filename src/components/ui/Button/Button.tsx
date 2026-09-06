@@ -1,9 +1,9 @@
-﻿/**
+/**
  * Button: Stamped interactive button component with Framer Motion tactile press scaling.
  * Communicates with: Button.module.css, asymmetricRadius.ts, and consumer views.
  */
 import React from 'react';
-import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion, HTMLMotionProps, MotionStyle } from 'framer-motion';
 import { getAsymmetricRadius } from '@/utils/asymmetricRadius';
 import styles from './Button.module.css';
 
@@ -42,7 +42,7 @@ export const Button: React.FC<ButtonProps> = ({
     className,
   ].filter(Boolean).join(' ');
 
-  const mergedStyle: React.CSSProperties = {
+  const mergedStyle: MotionStyle = {
     borderRadius,
     ...style,
   };
@@ -56,6 +56,7 @@ export const Button: React.FC<ButtonProps> = ({
         className={combinedClasses}
         style={mergedStyle}
         whileTap={{ scale: 0.96 }}
+        {...(rest as any)}
       >
         {children}
       </motion.a>
