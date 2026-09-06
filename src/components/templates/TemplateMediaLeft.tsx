@@ -1,13 +1,13 @@
 /**
  * TemplateMediaLeft: Project layout with prominent pinned media left and narrative statements right.
- * Communicates with: Templates.module.css, Button.tsx, Badge.tsx, and Project.ts.
+ * Communicates with: Templates.module.css, MediaFrame.tsx, Button.tsx, Badge.tsx, and Project.ts.
  */
 import React from 'react';
 import { Project } from '@/types/project';
 import { Button } from '@/components/ui/Button/Button';
 import { Badge, BadgeTone } from '@/components/ui/Badge/Badge';
 import { ExternalLinkIcon } from '@/components/ui/Icons/CustomIcons';
-import { getAsymmetricRadius } from '@/utils/asymmetricRadius';
+import { MediaFrame } from '@/components/ui/MediaFrame/MediaFrame';
 import styles from './Templates.module.css';
 
 export interface TemplateProps {
@@ -18,7 +18,6 @@ export interface TemplateProps {
 const BADGE_TONES: readonly BadgeTone[] = ['terracotta', 'aqua', 'ochre'];
 
 export const TemplateMediaLeft: React.FC<TemplateProps> = ({ project, indexNumber }) => {
-  const mediaRadius = getAsymmetricRadius(`${project.slug}-media-left`, 'large');
   const stackItems = project.meta.stack
     ? project.meta.stack.split(',').map((s) => s.trim()).filter(Boolean)
     : [];
@@ -43,16 +42,13 @@ export const TemplateMediaLeft: React.FC<TemplateProps> = ({ project, indexNumbe
         <div className={styles.mediaLeftGrid}>
           <div>
             {project.cover && (
-              <div className={styles.mediaFrame} style={{ borderRadius: mediaRadius }}>
-                <img
-                  src={project.cover.src}
-                  alt={project.meta.title}
-                  className={styles.mediaImage}
-                />
-                <div className={styles.mediaCaption}>
-                  COVER SPECIMEN // {project.cover.name}
-                </div>
-              </div>
+              <MediaFrame
+                asset={project.cover}
+                alt={project.meta.title}
+                seed={`${project.slug}-media-left`}
+                radiusSize="large"
+                captionPrefix="COVER SPECIMEN"
+              />
             )}
           </div>
 
