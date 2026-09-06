@@ -113,11 +113,23 @@ export const ProjectIndexSection: React.FC<ProjectIndexSectionProps> = ({ projec
               borderRadius: previewRadius,
             }}
           >
-            <img
-              src={hoveredProject.cover.src}
-              alt={hoveredProject.meta.title}
-              className={styles.previewImage}
-            />
+            {hoveredProject.cover.type === 'video' ? (
+              <video
+                src={hoveredProject.cover.src}
+                poster={hoveredProject.cover.poster}
+                className={styles.previewImage}
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
+            ) : (
+              <img
+                src={hoveredProject.cover.src}
+                alt={hoveredProject.meta.title}
+                className={styles.previewImage}
+              />
+            )}
             <div className={styles.previewMeta}>
               <span className={styles.previewSlug}>{hoveredProject.slug}</span>
               <span className={styles.previewSlug}>{hoveredProject.template}</span>
