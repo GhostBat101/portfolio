@@ -1,6 +1,6 @@
 /**
  * TemplateSplitScrollPin: Project layout pinning the media frame while narrative statements scroll.
- * Communicates with: Templates.module.css, PinnedSection.tsx, Button.tsx, and Badge.tsx.
+ * Communicates with: Templates.module.css, MediaFrame.tsx, PinnedSection.tsx, Button.tsx, and Badge.tsx.
  */
 import React from 'react';
 import { Project } from '@/types/project';
@@ -8,7 +8,7 @@ import { PinnedSection } from '@/components/motion/PinnedSection';
 import { Button } from '@/components/ui/Button/Button';
 import { Badge, BadgeTone } from '@/components/ui/Badge/Badge';
 import { ExternalLinkIcon } from '@/components/ui/Icons/CustomIcons';
-import { getAsymmetricRadius } from '@/utils/asymmetricRadius';
+import { MediaFrame } from '@/components/ui/MediaFrame/MediaFrame';
 import styles from './Templates.module.css';
 
 export interface TemplateProps {
@@ -19,23 +19,19 @@ export interface TemplateProps {
 const BADGE_TONES: readonly BadgeTone[] = ['terracotta', 'ochre', 'aqua'];
 
 export const TemplateSplitScrollPin: React.FC<TemplateProps> = ({ project, indexNumber }) => {
-  const pinRadius = getAsymmetricRadius(`${project.slug}-split-pin`, 'large');
   const stackItems = project.meta.stack
     ? project.meta.stack.split(',').map((s) => s.trim()).filter(Boolean)
     : [];
   const displayStack = stackItems.length === 3 ? stackItems.slice(0, 2) : stackItems.slice(0, 4);
 
   const pinnedMedia = project.cover ? (
-    <div className={styles.mediaFrame} style={{ borderRadius: pinRadius }}>
-      <img
-        src={project.cover.src}
-        alt={project.meta.title}
-        className={styles.mediaImage}
-      />
-      <div className={styles.mediaCaption}>
-        PINNED SPECIMEN // {project.cover.name}
-      </div>
-    </div>
+    <MediaFrame
+      asset={project.cover}
+      alt={project.meta.title}
+      seed={`${project.slug}-split-pin`}
+      radiusSize="large"
+      captionPrefix="PINNED SPECIMEN"
+    />
   ) : null;
 
   const scrollingBody = (
