@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ViteConfig: Vite build configuration with React plugin, path aliases, and base URL resolution.
  * Communicates with: package.json, tsconfig.json, and GitHub Pages deployment environment.
  */
