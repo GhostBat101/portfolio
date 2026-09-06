@@ -1,8 +1,0 @@
-﻿title: Zenith Code Editor
-year: 2025
-role: Systems & UI Engineer
-stack: TypeScript, WebAssembly, Rust, Canvas
-live: https://zenith-editor.ghostbat101.dev
-repo: https://github.com/GhostBat101/zenith-editor
-order: 2
-featured: true
