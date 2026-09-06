@@ -1,4 +1,0 @@
-﻿A focused note system designed for spoken thinking.
-Voice input turns into structured markdown records instantly.
-Zero latency offline persistence through local indexed databases.
-Built solo from initial prototype to deployment.
