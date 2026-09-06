@@ -24,6 +24,7 @@ export interface ProjectAsset {
   src: string;
   type: 'image' | 'video';
   name: string;
+  poster?: string;
 }
 
 export interface Project {
