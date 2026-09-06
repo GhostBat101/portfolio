@@ -1,0 +1,121 @@
+﻿/**
+ * Typography: Editorial typographic classes for Syne, DM Sans, and Space Mono.
+ * Communicates with: tokens.css, globals.css, and component modules.
+ */
+.font-display {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.font-mono {
+  font-family: 'Space Mono', monospace;
+}
+
+.display-hero {
+  font-family: 'Syne', sans-serif;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 76px;
+  letter-spacing: -0.03em;
+}
+
+.headline-xl {
+  font-family: 'Syne', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 52px;
+  letter-spacing: -0.02em;
+}
+
+.headline-lg {
+  font-family: 'Syne', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -0.015em;
+}
+
+.headline-md {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+.headline-sm {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+}
+
+.body-lg {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+.body-md {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+}
+
+.body-sm {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.005em;
+}
+
+.label-code {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+}
+
+.label-caps {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .display-hero {
+    font-size: 42px;
+    line-height: 46px;
+    letter-spacing: -0.02em;
+  }
+
+  .headline-xl {
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: -0.02em;
+  }
+
+  .headline-lg {
+    font-size: 28px;
+    line-height: 32px;
+    letter-spacing: -0.015em;
+  }
+
+  .body-lg {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
