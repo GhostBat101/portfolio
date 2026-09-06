@@ -1,0 +1,201 @@
+/**
+ * TemplateStyles: Shared layouts, media frames, and metadata ribbons for project templates.
+ * Communicates with: Template components, tokens.css, and ProjectDetailSection.tsx.
+ */
+.projectArticle {
+  border-bottom: var(--border-ink);
+  padding: 6rem 0;
+  position: relative;
+}
+
+.projectHeader {
+  align-items: baseline;
+  border-bottom: var(--border-ink-thin);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+}
+
+.titleArea {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.projectIndex {
+  color: var(--color-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.projectTitle {
+  color: var(--color-primary);
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.metaRibbon {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.metaItem {
+  color: var(--color-neutral);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.mediaFrame {
+  background-color: var(--color-surface-container);
+  border: var(--border-ink);
+  box-shadow: var(--shadow-structural-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+.mediaImage {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.mediaCaption {
+  background-color: var(--color-surface);
+  border-top: var(--border-ink-thin);
+  color: var(--color-primary);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  padding: 0.5rem 1rem;
+}
+
+.statementList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.statementLead {
+  border-left: 2px solid var(--color-secondary);
+  color: var(--color-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.statementBody {
+  border-left: 1px solid var(--color-surface-dim);
+  color: var(--color-neutral);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.actionsRow {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.badgeStack {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.galleryRow {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 3rem;
+}
+
+.mediaLeftGrid {
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .mediaLeftGrid {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.fullBleedMedia {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 2.5rem;
+  max-height: 540px;
+  width: 100%;
+}
+
+.fullBleedGrid {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .fullBleedGrid {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+.textFirstGrid {
+  align-items: start;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .textFirstGrid {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
+
+.splitScrollContainer {
+  position: relative;
+}
+
+.editorialStackContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.editorialDetailsGrid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .editorialDetailsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
