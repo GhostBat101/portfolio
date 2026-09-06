@@ -1,0 +1,81 @@
+/**
+ * FooterStyles: Broadside metadata ribbon with 1.5px ink border and back-to-top stamp.
+ * Communicates with: Footer.tsx and tokens.css.
+ */
+.footer {
+  background-color: var(--color-surface);
+  border-top: var(--border-ink);
+  padding: 3rem 0;
+  position: relative;
+}
+
+.inner {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.brandGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.brandText {
+  color: var(--color-primary);
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.colophon {
+  color: var(--color-neutral);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+}
+
+.metaRibbon {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.metaLink {
+  color: var(--color-neutral);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.15s ease;
+}
+
+.metaLink:hover {
+  color: var(--color-secondary);
+}
+
+.topButton {
+  align-items: center;
+  background-color: var(--color-surface-container);
+  border: var(--border-ink);
+  box-shadow: var(--shadow-stamped);
+  color: var(--color-primary);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.topButton:hover {
+  box-shadow: var(--shadow-structural-lg);
+  transform: translate(-1px, -1px);
+}
