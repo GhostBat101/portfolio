@@ -1,0 +1,4 @@
+﻿A lightweight code editor rendering syntax trees on GPU canvases.
+Text buffer parsing runs on Rust compiled to WebAssembly.
+Starts instantly in under forty milliseconds on cold launch.
+Engineered for minimal memory consumption across large repositories.
