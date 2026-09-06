@@ -1,0 +1,25 @@
+﻿/**
+ * AmbientStyles: Positioning and styling for ambient cursor ink marks and micro-interaction layers.
+ * Communicates with: AmbientEffects.tsx and tokens.css.
+ */
+.cursorFollower {
+  border: 1px solid var(--color-primary);
+  border-radius: 4px;
+  height: 12px;
+  pointer-events: none;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  will-change: transform, left, top;
+  z-index: 9999;
+}
+
+.cursorPrimary {
+  background-color: var(--color-secondary);
+}
+
+@media (max-width: 768px) {
+  .cursorFollower {
+    display: none;
+  }
+}
