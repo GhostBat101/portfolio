@@ -1,4 +1,0 @@
-﻿A real-time raymarched visualizer built with custom fragment shaders.
-Procedural terrain generates infinite wireframe horizons on the GPU.
-Audio frequency bins drive shader uniforms without CPU bottlenecks.
-Optimized to render sixty frames per second on mobile chipsets.
