@@ -1,0 +1,162 @@
+/**
+ * ProjectIndexStyles: Broadsheet table-of-contents index with hover preview plate.
+ * Communicates with: ProjectIndexSection.tsx, Badge.tsx, and tokens.css.
+ */
+.section {
+  border-bottom: var(--border-ink);
+  padding: 5rem 0;
+  position: relative;
+}
+
+.headerRow {
+  align-items: flex-end;
+  border-bottom: var(--border-ink);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.kicker {
+  color: var(--color-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.title {
+  color: var(--color-primary);
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.metaCount {
+  color: var(--color-neutral);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.indexList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.indexItem {
+  border-bottom: var(--border-ink-thin);
+  display: block;
+  position: relative;
+  transition: background-color 0.15s ease;
+}
+
+.indexItem:hover {
+  background-color: var(--color-surface-container);
+}
+
+.indexLink {
+  align-items: center;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 48px 1.5fr 1fr 80px;
+  padding: 1.25rem 0.5rem;
+  text-decoration: none;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .indexLink {
+    gap: 0.75rem;
+    grid-template-columns: 36px 1fr auto;
+  }
+
+  .stackCol {
+    display: none;
+  }
+}
+
+.indexNumber {
+  color: var(--color-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.indexTitle {
+  color: var(--color-primary);
+  font-family: 'Syne', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.indexItem:hover .indexTitle {
+  color: var(--color-secondary);
+  transform: translateX(6px);
+}
+
+.stackCol {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.yearCol {
+  color: var(--color-neutral);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.previewFrame {
+  background-color: var(--color-surface-container);
+  border: var(--border-ink);
+  box-shadow: var(--shadow-structural-lg);
+  display: none;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  width: 280px;
+  z-index: 50;
+}
+
+.previewImage {
+  display: block;
+  height: 180px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.previewMeta {
+  align-items: center;
+  border-top: var(--border-ink-thin);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+}
+
+.previewSlug {
+  color: var(--color-primary);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
