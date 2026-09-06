@@ -1,0 +1,87 @@
+﻿/**
+ * FormStyles: Hard-offset inputs and asymmetric stamped checkboxes with crisp ink borders.
+ * Communicates with: Input.tsx, Checkbox.tsx, and ContactSection.tsx.
+ */
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.label {
+  color: var(--color-primary);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.input {
+  background-color: var(--color-paper-light);
+  border: var(--border-ink);
+  box-shadow: 2px 2px 0px var(--color-primary);
+  color: var(--color-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 24px;
+  outline: none;
+  padding: 0.75rem 1rem;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  width: 100%;
+}
+
+.input::placeholder {
+  color: rgba(92, 82, 66, 0.6);
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+}
+
+.input:focus {
+  box-shadow: 3px 3px 0px var(--color-tertiary);
+  transform: translate(-1px, -1px);
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.checkboxWrapper {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 0.75rem;
+  user-select: none;
+}
+
+.checkboxBox {
+  align-items: center;
+  background-color: var(--color-paper-light);
+  border: var(--border-ink);
+  box-shadow: 2px 2px 0px var(--color-primary);
+  display: inline-flex;
+  height: 20px;
+  justify-content: center;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  width: 20px;
+}
+
+.checkboxChecked {
+  background-color: var(--color-secondary);
+}
+
+.checkboxGlyph {
+  color: var(--color-primary);
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.checkboxLabel {
+  color: var(--color-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+}
