@@ -1,0 +1,60 @@
+﻿/**
+ * ButtonStyles: Styles for Primary, Secondary, and Ghost buttons with hard offset shadows.
+ * Communicates with: Button.tsx and tokens.css.
+ */
+.button {
+  align-items: center;
+  border: var(--border-ink);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  justify-content: center;
+  letter-spacing: 0.1em;
+  line-height: 14px;
+  outline: none;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.primary {
+  background-color: var(--color-primary);
+  box-shadow: 3px 3px 0px var(--color-secondary);
+  color: var(--color-paper-light);
+}
+
+.primary:hover {
+  box-shadow: 2px 2px 0px var(--color-secondary);
+  transform: translate(1px, 1px);
+}
+
+.secondary {
+  background-color: var(--color-secondary);
+  box-shadow: 3px 3px 0px var(--color-tertiary);
+  color: var(--color-primary);
+}
+
+.secondary:hover {
+  box-shadow: 2px 2px 0px var(--color-tertiary);
+  transform: translate(1px, 1px);
+}
+
+.ghost {
+  background-color: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: var(--color-primary);
+}
+
+.ghost:hover {
+  background-color: var(--color-tertiary);
+}
+
+.fullWidth {
+  width: 100%;
+}
