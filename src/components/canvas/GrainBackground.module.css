@@ -1,0 +1,14 @@
+﻿/**
+ * GrainCanvasStyles: Positioning and layout rules for the isolated WebGL background canvas.
+ * Communicates with: GrainBackground.tsx and globals.css.
+ */
+.canvas {
+  height: 100vh;
+  inset: 0;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 0;
+}
