@@ -1,0 +1,8 @@
+﻿title: Synth Wave GL
+year: 2024
+role: Creative Technologist
+stack: WebGL 2.0, GLSL, Web Audio, TypeScript
+live: https://synthwave.ghostbat101.dev
+repo: https://github.com/GhostBat101/synth-wave-gl
+order: 4
+featured: true
