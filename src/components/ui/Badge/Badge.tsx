@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Badge: Stamped chip component with asymmetric corners and optional dismiss action.
  * Communicates with: Badge.module.css, asymmetricRadius.ts, and project metadata views.
  */
