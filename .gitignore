@@ -1,0 +1,43 @@
+﻿# ==============================================================================
+# Agent Governance & Rule Files (Local Project Rules Only - Never Commit/Push)
+# ==============================================================================
+GEMINI.md
+AGENTS.md
+CLAUDE.md
+.agents/rules/
+.agent/rules/
+.claude/rules/
+.cursor/rules/
+.gemini/rules/
+.vscode/rules/
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing & Coverage
+coverage/
+playwright-report/
+test-results/
+
+# Production Build Artifacts
+dist/
+dist-ssr/
+build/
+*.local
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# OS & Editor Metadata
+.DS_Store
+Thumbs.db
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
