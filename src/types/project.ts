@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ProjectTypes: Core data contracts for projects, metadata, media assets, and layout templates.
  * Communicates with: scan-projects.mjs, ProjectIndexSection.tsx, and template components.
  */
