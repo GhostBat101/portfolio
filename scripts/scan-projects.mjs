@@ -1,9 +1,10 @@
 /**
- * ScanProjects: Build-time Node.js script scanning /projects and compiling projects.json.
- * Communicates with: /projects directory, public/projects, and src/data/projects.json.
+ * ScanProjects: Build-time Node.js script scanning /projects, optimizing video, and compiling projects.json.
+ * Communicates with: /projects directory, FFmpeg, public/projects, and src/data/projects.json.
  */
 import fs from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 
 const TEMPLATES = [
@@ -15,7 +16,7 @@ const TEMPLATES = [
 ];
 
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.svg']);
-const VIDEO_EXTENSIONS = new Set(['.mp4', '.webm']);
+const VIDEO_EXTENSIONS = new Set(['.mp4', '.webm', '.mov']);
 
 export function slugToTitle(slug) {
   return slug
@@ -72,6 +73,10 @@ export function parseStatementFile(rawContent) {
     .filter((line) => line.length > 0 && !line.startsWith('---'));
 }
 
+export function sanitizeFileName(name) {
+  return name.replace(/[^a-zA-Z0-9._-]/g, '_');
+}
+
 export function sortMediaFiles(fileNames, slug) {
   let cover = null;
   const gallery = [];
@@ -84,18 +89,34 @@ export function sortMediaFiles(fileNames, slug) {
   for (const fileName of validFiles) {
     const ext = path.extname(fileName).toLowerCase();
     const base = path.basename(fileName, ext).toLowerCase();
-    const type = VIDEO_EXTENSIONS.has(ext) ? 'video' : 'image';
+    const isVideo = VIDEO_EXTENSIONS.has(ext);
+    const type = isVideo ? 'video' : 'image';
+    const sanitizedBase = sanitizeFileName(path.basename(fileName, ext));
+
+    let src = `projects/${slug}/media/${fileName}`;
+    let poster;
+
+    if (isVideo) {
+      src = `projects/${slug}/media/${sanitizedBase}-web.mp4`;
+      poster = `projects/${slug}/media/${sanitizedBase}-poster.jpg`;
+    }
+
     const asset = {
-      src: `projects/${slug}/media/${fileName}`,
+      src,
       type,
       name: fileName,
+      ...(poster ? { poster } : {}),
     };
 
-    if (base === 'cover') {
+    if (base === 'cover' || base === 'cover-web' || base === 'cover-poster') {
       cover = asset;
     } else {
       gallery.push(asset);
     }
+  }
+
+  if (!cover && gallery.length > 0) {
+    cover = gallery.shift();
   }
 
   gallery.sort((a, b) => {
@@ -121,6 +142,48 @@ export function assignTemplate(slug, index) {
   }
   const deterministicIndex = Math.abs(hash + index) % TEMPLATES.length;
   return TEMPLATES[deterministicIndex];
+}
+
+export function getFfmpegPath() {
+  const candidatePaths = [
+    'C:\\Users\\User\\AppData\\Local\\Microsoft\\WinGet\\Links\\ffmpeg.exe',
+    'C:\\Users\\User\\AppData\\Local\\ms-playwright\\ffmpeg-1011\\ffmpeg-win64.exe',
+    'ffmpeg',
+  ];
+
+  for (const candidate of candidatePaths) {
+    try {
+      execSync(`"${candidate}" -version`, { stdio: 'ignore' });
+      return candidate;
+    } catch {
+      // try next
+    }
+  }
+  return null;
+}
+
+export function processVideo(ffmpegBin, sourceVideoPath, destWebVideoPath, destPosterPath) {
+  if (!fs.existsSync(destWebVideoPath)) {
+    try {
+      execSync(
+        `"${ffmpegBin}" -y -i "${sourceVideoPath}" -vf "scale='min(960,iw)':-2" -c:v libx264 -crf 28 -preset fast -pix_fmt yuv420p -an -movflags +faststart "${destWebVideoPath}"`,
+        { stdio: 'ignore' }
+      );
+    } catch {
+      fs.copyFileSync(sourceVideoPath, destWebVideoPath);
+    }
+  }
+
+  if (!fs.existsSync(destPosterPath)) {
+    try {
+      execSync(
+        `"${ffmpegBin}" -y -ss 00:00:01 -i "${sourceVideoPath}" -vframes 1 -vf "scale='min(960,iw)':-2" "${destPosterPath}"`,
+        { stdio: 'ignore' }
+      );
+    } catch {
+      // ignore
+    }
+  }
 }
 
 export function scanProjects(rootDir) {
@@ -184,6 +247,7 @@ export function scanProjects(rootDir) {
 export function syncProjectMedia(rootDir) {
   const projectsDir = path.resolve(rootDir, 'projects');
   const targetDir = path.resolve(rootDir, 'public', 'projects');
+  const ffmpegBin = getFfmpegPath();
 
   if (!fs.existsSync(projectsDir)) return;
 
@@ -198,13 +262,28 @@ export function syncProjectMedia(rootDir) {
     const sourceMedia = path.join(projectsDir, slug, 'media');
     const destMedia = path.join(targetDir, slug, 'media');
 
-    if (fs.existsSync(sourceMedia)) {
-      if (!fs.existsSync(destMedia)) {
-        fs.mkdirSync(destMedia, { recursive: true });
-      }
-      const files = fs.readdirSync(sourceMedia);
-      for (const file of files) {
-        fs.copyFileSync(path.join(sourceMedia, file), path.join(destMedia, file));
+    if (!fs.existsSync(sourceMedia)) continue;
+
+    if (!fs.existsSync(destMedia)) {
+      fs.mkdirSync(destMedia, { recursive: true });
+    }
+
+    const files = fs.readdirSync(sourceMedia);
+    for (const file of files) {
+      const ext = path.extname(file).toLowerCase();
+      const sourceFile = path.join(sourceMedia, file);
+      const isVideo = VIDEO_EXTENSIONS.has(ext);
+
+      if (isVideo && ffmpegBin) {
+        const sanitizedBase = sanitizeFileName(path.basename(file, ext));
+        const destWebVideo = path.join(destMedia, `${sanitizedBase}-web.mp4`);
+        const destPoster = path.join(destMedia, `${sanitizedBase}-poster.jpg`);
+        processVideo(ffmpegBin, sourceFile, destWebVideo, destPoster);
+      } else {
+        const destFile = path.join(destMedia, file);
+        if (!fs.existsSync(destFile)) {
+          fs.copyFileSync(sourceFile, destFile);
+        }
       }
     }
   }
@@ -215,8 +294,8 @@ const invokedFilePath = process.argv[1] ? path.resolve(process.argv[1]) : '';
 
 if (invokedFilePath === currentFilePath) {
   const rootDir = process.cwd();
-  const projects = scanProjects(rootDir);
   syncProjectMedia(rootDir);
+  const projects = scanProjects(rootDir);
 
   const outputPath = path.resolve(rootDir, 'src', 'data', 'projects.json');
   const outputDir = path.dirname(outputPath);
