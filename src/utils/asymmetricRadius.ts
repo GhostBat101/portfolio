@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AsymmetricRadius: Deterministic corner profile generator enforcing the Soft Stamp hybrid geometry.
  * Communicates with: Button, Badge, Input, Checkbox, media frames, and icon containers.
  */
