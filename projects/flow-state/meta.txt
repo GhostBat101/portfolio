@@ -1,0 +1,8 @@
+﻿title: Flow State
+year: 2024
+role: Frontend Architect
+stack: React 18, GSAP, Canvas, Web Audio
+live: https://flow-state.ghostbat101.dev
+repo: https://github.com/GhostBat101/flow-state
+order: 3
+featured: false
