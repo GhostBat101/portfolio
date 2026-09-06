@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Checkbox: Stamped square toggle component with asymmetric corners and ink cross glyph.
  * Communicates with: Form.module.css, asymmetricRadius.ts, and interactive forms.
  */
