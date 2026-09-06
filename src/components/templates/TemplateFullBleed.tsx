@@ -1,13 +1,13 @@
 /**
  * TemplateFullBleed: Project layout with prominent hero cover frame and staggered editorial columns.
- * Communicates with: Templates.module.css, Button.tsx, Badge.tsx, and Project.ts.
+ * Communicates with: Templates.module.css, MediaFrame.tsx, Button.tsx, Badge.tsx, and Project.ts.
  */
 import React from 'react';
 import { Project } from '@/types/project';
 import { Button } from '@/components/ui/Button/Button';
 import { Badge, BadgeTone } from '@/components/ui/Badge/Badge';
 import { ExternalLinkIcon } from '@/components/ui/Icons/CustomIcons';
-import { getAsymmetricRadius } from '@/utils/asymmetricRadius';
+import { MediaFrame } from '@/components/ui/MediaFrame/MediaFrame';
 import styles from './Templates.module.css';
 
 export interface TemplateProps {
@@ -18,7 +18,6 @@ export interface TemplateProps {
 const BADGE_TONES: readonly BadgeTone[] = ['aqua', 'terracotta', 'ochre'];
 
 export const TemplateFullBleed: React.FC<TemplateProps> = ({ project, indexNumber }) => {
-  const coverRadius = getAsymmetricRadius(`${project.slug}-full-bleed`, 'large');
   const stackItems = project.meta.stack
     ? project.meta.stack.split(',').map((s) => s.trim()).filter(Boolean)
     : [];
@@ -41,16 +40,15 @@ export const TemplateFullBleed: React.FC<TemplateProps> = ({ project, indexNumbe
         </header>
 
         {project.cover && (
-          <div className={`${styles.mediaFrame} ${styles.fullBleedMedia}`} style={{ borderRadius: coverRadius }}>
-            <img
-              src={project.cover.src}
-              alt={project.meta.title}
-              className={styles.mediaImage}
-            />
-            <div className={styles.mediaCaption}>
-              EXPANSIVE CANVASES // {project.cover.name}
-            </div>
-          </div>
+          <MediaFrame
+            asset={project.cover}
+            alt={project.meta.title}
+            seed={`${project.slug}-full-bleed`}
+            radiusSize="large"
+            className={styles.fullBleedMedia}
+            aspectRatio="16 / 9"
+            captionPrefix="EXPANSIVE CANVASES"
+          />
         )}
 
         <div className={styles.fullBleedGrid}>
