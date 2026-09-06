@@ -1,4 +1,0 @@
-﻿An ambient productivity environment generating generative soundscapes.
-Binaural audio frequencies sync with real-time breathing visualizers.
-Zero intrusive notifications or distracting dashboard widgets.
-Designed to maintain deep concentration through long programming blocks.
