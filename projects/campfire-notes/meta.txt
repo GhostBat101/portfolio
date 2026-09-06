@@ -1,8 +1,0 @@
-﻿title: Campfire Notes
-year: 2025
-role: Full-stack developer
-stack: React 18, Node.js, WebGL, PostgreSQL
-live: https://campfire-notes.ghostbat101.dev
-repo: https://github.com/GhostBat101/campfire-notes
-order: 1
-featured: true
