@@ -1,4 +1,0 @@
-﻿Piece table data structure ensures constant-time insertion and deletion.
-Custom syntax highlighting engine tokenizes code via tree-sitter bindings.
-GPU font atlas renders crisp glyphs on high-DPI displays.
-Extensible plugin architecture communicates over asynchronous worker channels.
