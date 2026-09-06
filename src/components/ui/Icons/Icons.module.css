@@ -1,0 +1,35 @@
+﻿/**
+ * IconStyles: Container framing and crisp line work for custom editorial SVG icons.
+ * Communicates with: CustomIcons.tsx and tokens.css.
+ */
+.iconContainer {
+  align-items: center;
+  background-color: var(--color-paper-light);
+  border: var(--border-ink);
+  box-shadow: 2px 2px 0px var(--color-primary);
+  display: inline-flex;
+  height: 38px;
+  justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  user-select: none;
+  width: 38px;
+}
+
+.iconContainer:hover {
+  box-shadow: 1px 1px 0px var(--color-primary);
+  transform: translate(1px, 1px);
+}
+
+.iconContainerAccent {
+  background-color: var(--color-tertiary);
+}
+
+.iconGlyph {
+  fill: none;
+  height: 18px;
+  stroke: var(--color-primary);
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 1.5px;
+  width: 18px;
+}
