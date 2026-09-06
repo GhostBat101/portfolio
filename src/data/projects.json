@@ -1,0 +1,136 @@
+[
+  {
+    "slug": "campfire-notes",
+    "meta": {
+      "title": "Campfire Notes",
+      "order": 1,
+      "year": "2025",
+      "role": "Full-stack developer",
+      "stack": "React 18, Node.js, WebGL, PostgreSQL",
+      "live": "https://campfire-notes.ghostbat101.dev",
+      "repo": "https://github.com/GhostBat101/campfire-notes",
+      "featured": true
+    },
+    "overview": [
+      "A focused note system designed for spoken thinking.",
+      "Voice input turns into structured markdown records instantly.",
+      "Zero latency offline persistence through local indexed databases.",
+      "Built solo from initial prototype to deployment."
+    ],
+    "details": [
+      "Audio transcription executes locally using client-side WebAssembly models.",
+      "Custom audio spectrum visualization runs on an isolated WebGL canvas.",
+      "Database sync leverages Conflict-Free Replicated Data Types for offline-first reliability.",
+      "Interface layout adheres strictly to an 8px editorial paste-up grid."
+    ],
+    "cover": {
+      "src": "projects/campfire-notes/media/cover.svg",
+      "type": "image",
+      "name": "cover.svg"
+    },
+    "gallery": [
+      {
+        "src": "projects/campfire-notes/media/01.svg",
+        "type": "image",
+        "name": "01.svg"
+      }
+    ],
+    "template": "editorial-stack"
+  },
+  {
+    "slug": "zenith-editor",
+    "meta": {
+      "title": "Zenith Code Editor",
+      "order": 2,
+      "year": "2025",
+      "role": "Systems & UI Engineer",
+      "stack": "TypeScript, WebAssembly, Rust, Canvas",
+      "live": "https://zenith-editor.ghostbat101.dev",
+      "repo": "https://github.com/GhostBat101/zenith-editor",
+      "featured": true
+    },
+    "overview": [
+      "A lightweight code editor rendering syntax trees on GPU canvases.",
+      "Text buffer parsing runs on Rust compiled to WebAssembly.",
+      "Starts instantly in under forty milliseconds on cold launch.",
+      "Engineered for minimal memory consumption across large repositories."
+    ],
+    "details": [
+      "Piece table data structure ensures constant-time insertion and deletion.",
+      "Custom syntax highlighting engine tokenizes code via tree-sitter bindings.",
+      "GPU font atlas renders crisp glyphs on high-DPI displays.",
+      "Extensible plugin architecture communicates over asynchronous worker channels."
+    ],
+    "cover": {
+      "src": "projects/zenith-editor/media/cover.svg",
+      "type": "image",
+      "name": "cover.svg"
+    },
+    "gallery": [],
+    "template": "media-left"
+  },
+  {
+    "slug": "flow-state",
+    "meta": {
+      "title": "Flow State",
+      "order": 3,
+      "year": "2024",
+      "role": "Frontend Architect",
+      "stack": "React 18, GSAP, Canvas, Web Audio",
+      "live": "https://flow-state.ghostbat101.dev",
+      "repo": "https://github.com/GhostBat101/flow-state",
+      "featured": false
+    },
+    "overview": [
+      "An ambient productivity environment generating generative soundscapes.",
+      "Binaural audio frequencies sync with real-time breathing visualizers.",
+      "Zero intrusive notifications or distracting dashboard widgets.",
+      "Designed to maintain deep concentration through long programming blocks."
+    ],
+    "details": [
+      "Web Audio API synthesizes pink noise and harmonic drone chords algorithmically.",
+      "Kinetic typography pulses subtly in rhythm with heart-rate intervals.",
+      "Local state persistence caches custom audio mix presets across sessions.",
+      "Color temperature shifts dynamically based on local solar elevation."
+    ],
+    "cover": {
+      "src": "projects/flow-state/media/cover.svg",
+      "type": "image",
+      "name": "cover.svg"
+    },
+    "gallery": [],
+    "template": "editorial-stack"
+  },
+  {
+    "slug": "synth-wave",
+    "meta": {
+      "title": "Synth Wave GL",
+      "order": 4,
+      "year": "2024",
+      "role": "Creative Technologist",
+      "stack": "WebGL 2.0, GLSL, Web Audio, TypeScript",
+      "live": "https://synthwave.ghostbat101.dev",
+      "repo": "https://github.com/GhostBat101/synth-wave-gl",
+      "featured": true
+    },
+    "overview": [
+      "A real-time raymarched visualizer built with custom fragment shaders.",
+      "Procedural terrain generates infinite wireframe horizons on the GPU.",
+      "Audio frequency bins drive shader uniforms without CPU bottlenecks.",
+      "Optimized to render sixty frames per second on mobile chipsets."
+    ],
+    "details": [
+      "Signed distance fields define geometric primitives in screen space.",
+      "Volumetric lighting calculates light absorption through marching loops.",
+      "Fast Fourier Transform buffers map low frequencies to terrain heights.",
+      "Post-processing pipeline incorporates CRT scanline and bloom passes."
+    ],
+    "cover": {
+      "src": "projects/synth-wave/media/cover.svg",
+      "type": "image",
+      "name": "cover.svg"
+    },
+    "gallery": [],
+    "template": "full-bleed"
+  }
+]
