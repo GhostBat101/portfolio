@@ -1,0 +1,4 @@
+﻿Audio transcription executes locally using client-side WebAssembly models.
+Custom audio spectrum visualization runs on an isolated WebGL canvas.
+Database sync leverages Conflict-Free Replicated Data Types for offline-first reliability.
+Interface layout adheres strictly to an 8px editorial paste-up grid.
