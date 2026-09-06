@@ -1,0 +1,113 @@
+﻿/**
+ * GlobalStyles: CSS reset, base canvas surface styling, and responsive editorial layout grids.
+ * Communicates with: tokens.css, typography.css, and main.tsx.
+ */
+@import './tokens.css';
+@import './typography.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+::selection {
+  background-color: var(--color-tertiary);
+  color: var(--color-primary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--max-content-width);
+  padding-left: var(--margin-desktop);
+  padding-right: var(--margin-desktop);
+  width: 100%;
+}
+
+.grid-12 {
+  display: grid;
+  gap: var(--gutter-desktop);
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.divider-rule {
+  border-top: var(--border-ink-thin);
+  width: 100%;
+}
+
+.divider-rule-thick {
+  border-top: var(--border-ink-thick);
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding-left: var(--margin-tablet);
+    padding-right: var(--margin-tablet);
+  }
+
+  .grid-12 {
+    gap: var(--gutter-tablet);
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: var(--margin-mobile);
+    padding-right: var(--margin-mobile);
+  }
+
+  .grid-12 {
+    gap: var(--gutter-mobile);
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
