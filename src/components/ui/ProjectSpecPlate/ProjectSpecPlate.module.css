@@ -1,0 +1,141 @@
+/**
+ * ProjectSpecPlateStyles: Risograph editorial dossier plate displaying technical project specs.
+ * Communicates with: ProjectSpecPlate.tsx, tokens.css, and TemplateMediaLeft.tsx.
+ */
+.plateContainer {
+  background-color: var(--color-surface-container);
+  border: var(--border-ink);
+  box-shadow: var(--shadow-stamped);
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--space-md);
+  position: relative;
+  width: 100%;
+}
+
+.headerRibbon {
+  align-items: center;
+  background-color: var(--color-surface);
+  border-bottom: var(--border-ink-thin);
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.dossierLabel {
+  color: var(--color-primary);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+.statusGroup {
+  align-items: center;
+  display: flex;
+  gap: var(--space-2xs);
+}
+
+.liveBeacon {
+  animation: specPulse 2s ease-in-out infinite;
+  background-color: var(--color-tertiary);
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  height: 6px;
+  width: 6px;
+}
+
+.statusText {
+  color: var(--color-primary);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
+.specGrid {
+  display: grid;
+  gap: var(--space-xs);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: var(--space-sm);
+}
+
+.specCell {
+  background-color: var(--color-surface);
+  border: var(--border-ink-thin);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.specCell:last-child:nth-child(odd) {
+  grid-column: span 2;
+}
+
+.specLabel {
+  color: var(--color-neutral);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
+.specValue {
+  color: var(--color-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+@keyframes specPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (max-width: 768px) {
+  .specGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .specCell:last-child:nth-child(odd) {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 360px) {
+  .headerRibbon {
+    padding: var(--space-2xs) var(--space-xs);
+  }
+
+  .specCell {
+    padding: var(--space-2xs) var(--space-xs);
+  }
+
+  .specGrid {
+    gap: var(--space-2xs);
+    padding: var(--space-xs);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liveBeacon {
+    animation: none !important;
+    transition: none !important;
+  }
+}
