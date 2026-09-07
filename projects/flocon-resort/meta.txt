@@ -1,7 +1,7 @@
 title: Flocon Resort
 year: 2026
-role: Creative Technologist & 3D Systems Architect
-stack: Three.js, React Three Fiber, GSAP, Next.js
+role: Interactive resort website
+stack: Three.js, React, Next.js
 live: https://ghostbat101.github.io/flocon-resort/
 repo: https://github.com/GhostBat101/flocon-resort
 order: 1
