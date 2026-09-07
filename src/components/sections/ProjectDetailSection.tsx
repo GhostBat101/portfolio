@@ -24,7 +24,7 @@ const TEMPLATE_MAP: Record<LayoutTemplateType, React.FC<{ project: Project; inde
 
 export const ProjectDetailSection: React.FC<ProjectDetailSectionProps> = ({ projects }) => {
   return (
-    <section id="projects" aria-label="Selected Projects">
+    <section id="project-showcase" aria-label="Selected Projects">
       {projects.map((project, index) => {
         const indexNumber = String(index + 1).padStart(2, '0');
         const TemplateComponent = TEMPLATE_MAP[project.template] || TemplateMediaLeft;
