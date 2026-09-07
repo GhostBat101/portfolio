@@ -78,7 +78,7 @@
   padding-left: 1rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .issueTag {
     display: none;
   }
