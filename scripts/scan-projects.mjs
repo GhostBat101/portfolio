@@ -1,6 +1,6 @@
 /**
  * ScanProjects: Build-time Node.js script scanning /projects, optimizing video, and compiling projects.json.
- * Communicates with: /projects directory, FFmpeg, public/projects, specs.txt, and src/data/projects.json.
+ * Communicates with: /projects directory, FFmpeg, public/projects, specs.txt, src/data/projects.json, and screenshot poster images.
  */
 import fs from 'fs';
 import path from 'path';
@@ -208,6 +208,22 @@ export function sortMediaFiles(fileNames, slug) {
 
   if (!cover && gallery.length > 0) {
     cover = gallery.shift();
+  }
+
+  const POSTER_KEYWORDS = ['screenshot', 'poster', 'thumb', 'thumbnail'];
+
+  if (cover && cover.type === 'video') {
+    const imageFiles = validFiles.filter((f) => IMAGE_EXTENSIONS.has(path.extname(f).toLowerCase()));
+
+    const priorityMatch = imageFiles.find((f) =>
+      POSTER_KEYWORDS.some((kw) => path.basename(f, path.extname(f)).toLowerCase().includes(kw))
+    );
+
+    const screenshotImage = priorityMatch ?? imageFiles[0] ?? null;
+
+    if (screenshotImage) {
+      cover = { ...cover, poster: `projects/${slug}/media/${screenshotImage}` };
+    }
   }
 
   gallery.sort((a, b) => {
