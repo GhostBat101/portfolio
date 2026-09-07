@@ -49,15 +49,24 @@ export const ProjectIndexSection: React.FC<ProjectIndexSectionProps> = ({ projec
   };
 
   return (
-    <section id="project-index" className={styles.section} onMouseMove={handleMouseMove}>
+    <section id="projects" className={styles.section} onMouseMove={handleMouseMove}>
+      <span id="project-index" className="sr-only" />
       <div className="container">
         <div className={styles.headerRow}>
           <div className={styles.titleGroup}>
-            <span className={styles.kicker}>CATALOGUE & INDEX</span>
-            <h2 className={styles.title}>All Folio Projects</h2>
+            <span className={styles.kicker}>SELECTED WORK</span>
+            <h2 className={styles.title}>A few things I've built.</h2>
+            <div className={styles.introGroup}>
+              <p className={styles.introText}>
+                Every project has a different reason for existing. Some are made to sell, some to inform, and some simply to explore what a website can do.
+              </p>
+              <p className={styles.introSub}>
+                Here are a few examples.
+              </p>
+            </div>
           </div>
           <span className={styles.metaCount}>
-            {String(projects.length).padStart(2, '0')} RECORDS
+            {String(projects.length).padStart(2, '0')} PROJECTS
           </span>
         </div>
 
