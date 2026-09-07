@@ -33,8 +33,13 @@ const EMAIL_SUBJECTS = [
 const DIRECT_CHANNELS: readonly DirectChannel[] = [
   {
     label: 'Prefer email?',
-    value: 'ghostbat101.dev@gmail.com',
-    href: 'mailto:ghostbat101.dev@gmail.com',
+    value: 'kamruzzaman080@protonmail.com',
+    href: 'mailto:kamruzzaman080@protonmail.com',
+  },
+  {
+    label: 'WhatsApp',
+    value: '+880 1981 113040',
+    href: 'https://wa.me/8801981113040',
   },
   {
     label: 'Code repository',
