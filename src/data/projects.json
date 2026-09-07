@@ -5,21 +5,21 @@
       "title": "Flocon Resort",
       "order": 1,
       "year": "2026",
-      "role": "Creative Technologist & 3D Systems Architect",
-      "stack": "Three.js, React Three Fiber, GSAP, Next.js",
+      "role": "Interactive resort website",
+      "stack": "Three.js, React, Next.js",
       "live": "https://ghostbat101.github.io/flocon-resort/",
       "repo": "https://github.com/GhostBat101/flocon-resort",
       "featured": true
     },
     "overview": [
-      "Flocon Resort delivers an interactive 3D digital hospitality environment rendered through high-performance WebGL viewports.",
-      "The architectural experience merges procedural canvas dynamics with GPU-accelerated spatial camera choreography."
+      "A visual website concept for a mountain resort, built around a calm winter setting and an interactive 3D experience.",
+      "The goal was simple: make the website feel like a place you would actually want to visit."
     ],
     "details": [
-      "React Three Fiber coordinates isolated 3D scene graphs with declarative component lifecycles.",
-      "Custom Three.js shader materials simulate winter atmospheric illumination with strict frame-budget conservation.",
-      "GSAP timelines synchronize camera orbits, lighting states, and spatial text reveals without layout trashing.",
-      "Canvas Confetti effects execute particle simulations during key interaction waypoints."
+      "Strong visual presentation.",
+      "Interactive 3D scenes.",
+      "Smooth movement and transitions.",
+      "Clear information without losing the atmosphere."
     ],
     "cover": {
       "src": "projects/flocon-resort/media/Screen_Recording_2026-09-06_203457-web.mp4",
@@ -36,21 +36,22 @@
       "title": "Vintage Camera BD",
       "order": 2,
       "year": "2026",
-      "role": "Full-Stack Systems Engineer",
-      "stack": "Next.js, TypeScript, PostgreSQL, PL/pgSQL",
+      "role": "Online camera store and catalogue",
+      "stack": "Next.js, TypeScript, PostgreSQL",
       "live": "https://vintage-camera-bd.ghostbat-workspace.workers.dev/",
       "repo": "https://github.com/GhostBat101/Vintage_Camera_BD",
       "featured": true
     },
     "overview": [
-      "Vintage Camera BD establishes an archival database and marketplace platform dedicated to analog cameras and mechanical optics.",
-      "The system integrates high-efficiency Next.js App Router streaming with relational persistence across complex horological metadata."
+      "A website for finding, exploring, and buying vintage cameras.",
+      "The project combines a product catalogue with detailed camera information, making it easier for people to browse older cameras and compare what they find."
     ],
     "details": [
-      "Next.js App Router renders static product sheets on edge servers with incremental cache invalidation.",
-      "PostgreSQL database schemas maintain relational integrity across lens specifications, shutter formats, and historical production eras.",
-      "Custom PL/pgSQL database functions accelerate multi-attribute filtering and text indexing across vintage inventory.",
-      "Typed data contracts ensure zero runtime schema mismatches between administrative catalog inputs and client browsing surfaces."
+      "Easy product browsing.",
+      "Detailed product information.",
+      "Search and filtering.",
+      "A clean shopping experience.",
+      "Reliable product data."
     ],
     "cover": {
       "src": "projects/vintage-camera-bd/media/Recording_2026-09-04_151749-web.mp4",
