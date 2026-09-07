@@ -1,30 +1,41 @@
 /**
- * AboutSectionStyles: Editorial thesis section with risograph typography and statement cards.
+ * AboutSectionStyles: Editorial layout for GhostBat101 workflow stages and craft discipline.
  * Communicates with: AboutSection.tsx, tokens.css, and typography.css.
  */
 .about {
   border-bottom: var(--border-ink);
-  padding: 6rem 0;
+  padding: 5.5rem 0;
   position: relative;
 }
 
-.grid {
-  display: grid;
-  gap: 3.5rem;
-  grid-template-columns: 1fr;
+.anchorOffset {
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: -80px;
+  visibility: hidden;
 }
 
-@media (min-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr 1.3fr;
-    gap: 4.5rem;
+.mastheadGrid {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: 1fr;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 960px) {
+  .mastheadGrid {
+    align-items: stretch;
+    gap: 3rem;
+    grid-template-columns: 1.1fr 1fr;
   }
 }
 
 .leadCol {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.25rem;
+  justify-content: center;
 }
 
 .kicker {
@@ -39,72 +50,41 @@
 .title {
   color: var(--color-primary);
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-size: clamp(2.5rem, 5.5vw, 4rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.05;
   margin: 0;
 }
 
-.specimenBox {
-  background-color: var(--color-surface-container);
-  border: var(--border-ink);
-  box-shadow: var(--shadow-structural-sm);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1.5rem;
-}
-
-.specimenHeader {
-  align-items: center;
-  border-bottom: var(--border-ink-thin);
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 0.5rem;
-}
-
-.specimenLabel {
-  color: var(--color-primary);
-  font-family: 'Space Mono', monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.specimenText {
+.statement {
   color: var(--color-neutral);
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.4;
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  line-height: 1.6;
   margin: 0;
 }
 
-.statementsCol {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.statementCard {
-  background-color: var(--color-surface);
+.craftCard {
+  background-color: var(--color-surface-container);
   border: var(--border-ink);
-  box-shadow: var(--shadow-stamped);
+  box-shadow: var(--shadow-structural-lg);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.75rem 2rem;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  overflow: hidden;
 }
 
-.statementCard:hover {
-  box-shadow: var(--shadow-structural-lg);
-  transform: translate(-1px, -1px);
+.craftHeader {
+  align-items: center;
+  background-color: var(--color-surface);
+  border-bottom: var(--border-ink-thin);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
 }
 
-.statementTag {
-  color: var(--color-secondary);
+.craftLabel {
+  color: var(--color-primary);
   font-family: 'Space Mono', monospace;
   font-size: 11px;
   font-weight: 700;
@@ -112,11 +92,315 @@
   text-transform: uppercase;
 }
 
-.statementContent {
+.craftBadge {
+  background-color: var(--color-surface-container);
+  border: 1px solid var(--color-secondary);
+  border-radius: 4px;
+  color: var(--color-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+}
+
+.craftGrid {
+  display: grid;
+  flex: 1;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+  padding: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .craftGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.craftBox {
+  background-color: var(--color-surface);
+  border: var(--border-ink-thin);
+  border-radius: 8px;
+  box-shadow: var(--shadow-structural-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.craftBoxTag {
+  color: var(--color-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.craftBoxTitle {
   color: var(--color-primary);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.craftBoxDesc {
+  color: var(--color-neutral);
   font-family: 'DM Sans', sans-serif;
-  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-  font-weight: 600;
+  font-size: 12px;
   line-height: 1.45;
   margin: 0;
+}
+
+.craftFooter {
+  align-items: center;
+  background-color: var(--color-surface);
+  border-top: var(--border-ink-thin);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.65rem 1.25rem;
+}
+
+.craftFooterLabel {
+  color: var(--color-primary);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.craftFooterValue {
+  color: var(--color-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.stagesGrid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .stagesGrid {
+    gap: 1.75rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.stageCard {
+  background-color: var(--color-surface);
+  border: var(--border-ink);
+  box-shadow: var(--shadow-stamped);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.75rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stageCard:hover {
+  box-shadow: var(--shadow-structural-lg);
+  transform: translate(-1px, -1px);
+}
+
+.stageCardHeader {
+  align-items: center;
+  border-bottom: var(--border-ink-thin);
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+}
+
+.stepIndicator {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.stepNum {
+  color: var(--color-primary);
+  font-family: 'Space Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.stepBadge {
+  background-color: var(--color-surface-container);
+  border: 1px solid var(--color-primary);
+  border-radius: 4px;
+  color: var(--color-primary);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.5rem;
+  text-transform: uppercase;
+}
+
+.stageTitle {
+  color: var(--color-primary);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.stageDescription {
+  color: var(--color-neutral);
+  flex: 1;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.stageArtifact {
+  align-items: center;
+  background-color: var(--color-surface-container);
+  border: 1px solid var(--color-primary);
+  border-radius: 4px;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.45rem 0.75rem;
+}
+
+.artifactIcon {
+  color: var(--color-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.artifactText {
+  color: var(--color-primary);
+  font-family: 'Space Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fullWidthCard {
+  background-color: var(--color-surface-container);
+  border: var(--border-ink);
+  box-shadow: var(--shadow-structural-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  grid-column: 1 / -1;
+  padding: 2rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.fullWidthCard:hover {
+  transform: translate(-1px, -1px);
+}
+
+.fullWidthHeader {
+  align-items: center;
+  border-bottom: var(--border-ink);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+}
+
+.fullWidthStatus {
+  color: var(--color-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fullWidthContent {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 840px) {
+  .fullWidthContent {
+    align-items: center;
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.fullWidthLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fullWidthTitle {
+  color: var(--color-primary);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(22px, 3vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.fullWidthDesc {
+  color: var(--color-neutral);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.fullWidthRight {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fullWidthTagBox {
+  background-color: var(--color-surface);
+  border: var(--border-ink-thin);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1rem;
+}
+
+.fullWidthTagLabel {
+  color: var(--color-primary);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pillList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pillItem {
+  background-color: var(--color-surface-container);
+  border: 1px solid var(--color-secondary);
+  border-radius: 4px;
+  color: var(--color-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
 }
