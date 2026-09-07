@@ -12,15 +12,48 @@
   align-items: flex-end;
   border-bottom: var(--border-ink);
   display: flex;
+  gap: 2rem;
   justify-content: space-between;
   margin-bottom: 3rem;
   padding-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .headerRow {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
 }
 
 .titleGroup {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.introGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  max-width: 680px;
+}
+
+.introText {
+  color: var(--color-neutral);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.introSub {
+  color: var(--color-neutral);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
 }
 
 .kicker {
