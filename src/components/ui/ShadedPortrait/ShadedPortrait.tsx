@@ -1,5 +1,5 @@
 ﻿/**
- * ShadedPortrait: WebGL canvas component rendering a tactile Risograph duotone shader for author portraits.
+ * ShadedPortrait: WebGL canvas component rendering a static Risograph duotone shader for author portraits.
  * Communicates with: ShadedPortrait.module.css, asymmetricRadius.ts, and tokens.css.
  */
 import React, { useEffect, useRef, useState, useCallback } from 'react';
@@ -31,7 +31,6 @@ const FRAGMENT_SHADER_SOURCE = `
 precision mediump float;
 uniform sampler2D u_image;
 uniform vec2 u_resolution;
-uniform float u_time;
 uniform float u_hover;
 varying vec2 v_texCoord;
 
@@ -40,13 +39,9 @@ const vec3 COLOR_TERRACOTTA = vec3(0.859, 0.592, 0.498);
 const vec3 COLOR_AQUA = vec3(0.502, 0.816, 0.859);
 const vec3 COLOR_PAPER = vec3(0.980, 0.973, 0.953);
 
-float random(vec2 p) {
-  return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
-}
-
 void main() {
   vec2 uv = v_texCoord;
-  vec2 shift = vec2(0.0035, -0.0025) * u_hover;
+  vec2 shift = vec2(0.003, -0.002) * u_hover;
 
   float r = texture2D(u_image, uv + shift).r;
   float g = texture2D(u_image, uv).g;
@@ -55,18 +50,15 @@ void main() {
   float lum = dot(vec3(r, g, b), vec3(0.299, 0.587, 0.114));
   lum = smoothstep(0.10, 0.90, lum);
 
-  float grain = (random(uv * u_resolution + fract(u_time * 0.08)) - 0.5) * 0.055;
-  float ditheredLum = clamp(lum + grain, 0.0, 1.0);
-
   vec3 finalColor;
-  if (ditheredLum < 0.36) {
-    float t = ditheredLum / 0.36;
+  if (lum < 0.36) {
+    float t = lum / 0.36;
     finalColor = mix(COLOR_INK, COLOR_TERRACOTTA, t);
-  } else if (ditheredLum < 0.70) {
-    float t = (ditheredLum - 0.36) / 0.34;
+  } else if (lum < 0.70) {
+    float t = (lum - 0.36) / 0.34;
     finalColor = mix(COLOR_TERRACOTTA, COLOR_AQUA, t);
   } else {
-    float t = (ditheredLum - 0.70) / 0.30;
+    float t = (lum - 0.70) / 0.30;
     finalColor = mix(COLOR_AQUA, COLOR_PAPER, t);
   }
 
@@ -89,9 +81,9 @@ export const ShadedPortrait: React.FC<ShadedPortraitProps> = ({
   imageSrc = 'images/author-portrait.jpg',
   alt = 'GhostBat101 System Architect Portrait',
   className = '',
-  seed = 'ghostbat-portrait-plate',
+  seed = 'ghostbat-hero-portrait',
   radiusTier = 'large',
-  captionTitle = 'CREATOR // SPECIMEN 01',
+  captionTitle = 'CREATOR SPECIMEN // GHOSTBAT101',
   specBadge = 'RISO // 4-INK',
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -218,7 +210,6 @@ export const ShadedPortrait: React.FC<ShadedPortraitProps> = ({
     gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 0, 0);
 
     const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
-    const timeLocation = gl.getUniformLocation(program, 'u_time');
     const hoverLocation = gl.getUniformLocation(program, 'u_hover');
 
     const texture = gl.createTexture();
@@ -240,24 +231,11 @@ export const ShadedPortrait: React.FC<ShadedPortraitProps> = ({
       new Uint8Array([66, 89, 92, 255])
     );
 
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.src = resolvedSrc;
-
     let imageLoaded = false;
-    img.onload = () => {
-      imageLoaded = true;
-      gl.bindTexture(gl.TEXTURE_2D, texture);
-      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
-      draw();
-    };
 
-    let animationFrameId: number;
-    let startTime = performance.now();
-    let currentHover = 0;
+    const renderStatic = () => {
+      if (!imageLoaded) return;
 
-    const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const rect = canvas.getBoundingClientRect();
       const displayWidth = Math.floor(rect.width * dpr);
@@ -266,46 +244,30 @@ export const ShadedPortrait: React.FC<ShadedPortraitProps> = ({
       if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
         canvas.width = displayWidth;
         canvas.height = displayHeight;
-        gl.viewport(0, 0, displayWidth, displayHeight);
-        gl.uniform2f(resolutionLocation, displayWidth, displayHeight);
       }
-    };
 
-    const draw = () => {
-      if (!imageLoaded) return;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+      gl.uniform1f(hoverLocation, isHovered && !prefersReducedMotion ? 1.0 : 0.0);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
     };
 
-    resize();
-    window.addEventListener('resize', resize);
-
-    const render = (time: number) => {
-      if (document.hidden) {
-        animationFrameId = requestAnimationFrame(render);
-        return;
-      }
-
-      resize();
-
-      const elapsed = (time - startTime) * 0.001;
-      const targetHover = isHovered ? 1.0 : 0.0;
-      currentHover += (targetHover - currentHover) * 0.12;
-
-      gl.uniform1f(timeLocation, prefersReducedMotion ? 0.0 : elapsed);
-      gl.uniform1f(hoverLocation, currentHover);
-
-      draw();
-
-      if (!prefersReducedMotion || Math.abs(targetHover - currentHover) > 0.01) {
-        animationFrameId = requestAnimationFrame(render);
-      }
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.src = resolvedSrc;
+    img.onload = () => {
+      imageLoaded = true;
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+      renderStatic();
     };
 
-    animationFrameId = requestAnimationFrame(render);
+    renderStatic();
+    window.addEventListener('resize', renderStatic);
 
     return () => {
-      window.removeEventListener('resize', resize);
-      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', renderStatic);
       gl.deleteTexture(texture);
       gl.deleteBuffer(positionBuffer);
       gl.deleteBuffer(texCoordBuffer);
@@ -336,16 +298,14 @@ export const ShadedPortrait: React.FC<ShadedPortraitProps> = ({
           aria-label={alt}
           role="img"
         />
-        {!prefersReducedMotion && (
-          <div className={styles.statusPill}>
-            <span
-              className={`${styles.liveIndicator} ${
-                isHovered ? styles.liveIndicatorActive : ''
-              }`}
-            />
-            <span>{isHovered ? 'PLATE SHIFT' : 'RISO SHADER'}</span>
-          </div>
-        )}
+        <div className={styles.statusPill}>
+          <span
+            className={`${styles.liveIndicator} ${
+              isHovered ? styles.liveIndicatorActive : ''
+            }`}
+          />
+          <span>{isHovered ? 'PLATE SHIFT' : 'RISO // STATIC'}</span>
+        </div>
       </div>
 
       <div className={styles.portraitFooter}>
