@@ -1,0 +1,5 @@
+Architecture: Edge Serverless (OpenNext / Cloudflare)
+Database: PostgreSQL via Supabase
+Search Engine: Full-Text Camera Filter & Search
+Performance: Sub-second TTFB & Edge Asset Caching
+Type Safety: Strict End-to-End TypeScript
