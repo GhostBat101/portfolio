@@ -1,7 +1,7 @@
-React Three Fiber coordinates isolated 3D scene graphs with declarative component lifecycles.
+Strong visual presentation.
 
-Custom Three.js shader materials simulate winter atmospheric illumination with strict frame-budget conservation.
+Interactive 3D scenes.
 
-GSAP timelines synchronize camera orbits, lighting states, and spatial text reveals without layout trashing.
+Smooth movement and transitions.
 
-Canvas Confetti effects execute particle simulations during key interaction waypoints.
+Clear information without losing the atmosphere.
