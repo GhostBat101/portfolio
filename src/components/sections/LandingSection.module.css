@@ -1,52 +1,60 @@
 /**
- * LandingSectionStyles: Hero layout with risograph editorial typography and organic stamp mark.
- * Communicates with: LandingSection.tsx and tokens.css.
+ * LandingSectionStyles: Fluid responsive hero layout with clamped typography and constrained specimen frame.
+ * Communicates with: LandingSection.tsx, tokens.css, and typography.css.
  */
 .landing {
   border-bottom: var(--border-ink);
   min-height: calc(100vh - 64px);
-  padding: 6rem 0 4rem;
+  min-height: calc(100dvh - 64px);
+  padding: clamp(var(--space-xl), 5vw, var(--space-4xl)) 0 clamp(var(--space-xl), 4vw, var(--space-2xl));
   position: relative;
 }
 
 .grid {
   align-items: center;
   display: grid;
-  gap: 3rem;
+  gap: var(--space-xl);
   grid-template-columns: 1fr;
 }
 
 @media (min-width: 900px) {
   .grid {
+    gap: var(--space-3xl);
     grid-template-columns: 1.4fr 1fr;
-    gap: 4rem;
   }
 }
 
 .contentCol {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: var(--space-lg);
   position: relative;
   z-index: 2;
+}
+
+@media (min-width: 900px) {
+  .contentCol {
+    gap: var(--space-xl);
+  }
 }
 
 .kicker {
   color: var(--color-secondary);
   font-family: 'Space Mono', monospace;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
   text-transform: uppercase;
 }
 
 .headline {
   color: var(--color-primary);
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2.75rem, 6.5vw, 5.5rem);
+  font-size: clamp(2rem, 5vw + 0.75rem, 5.5rem);
   font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 0.96;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
   margin: 0;
 }
 
@@ -54,26 +62,32 @@
   border-left: 2px solid var(--color-secondary);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--space-sm);
   max-width: 540px;
-  padding-left: 1.25rem;
+  padding-left: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .statementGroup {
+    padding-left: var(--space-lg);
+  }
 }
 
 .statement {
   color: var(--color-neutral);
   font-family: 'DM Sans', sans-serif;
-  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-weight: 500;
-  line-height: 1.45;
+  line-height: 1.5;
   margin: 0;
 }
 
 .statementSecondary {
   color: var(--color-neutral);
   font-family: 'DM Sans', sans-serif;
-  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.55;
   margin: 0;
 }
 
@@ -81,13 +95,46 @@
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: var(--space-md);
+}
+
+@media (max-width: 420px) {
+  .actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: var(--space-sm);
+    width: 100%;
+  }
+
+  .actions > * {
+    justify-content: center;
+    min-height: 48px;
+    width: 100%;
+  }
 }
 
 .visualCol {
   align-items: center;
   display: flex;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: min(100%, 340px);
   position: relative;
   width: 100%;
+}
+
+@media (min-width: 900px) {
+  .visualCol {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actions > * {
+    transform: none !important;
+    transition: none !important;
+  }
 }
