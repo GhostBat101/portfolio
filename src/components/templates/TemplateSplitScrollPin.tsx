@@ -68,7 +68,7 @@ export const TemplateSplitScrollPin: React.FC<TemplateProps> = ({ project, index
             target="_blank"
             seed={`${project.slug}-split-live`}
           >
-            Launch Interactive Experience <ExternalLinkIcon size={14} />
+            Visit website <ExternalLinkIcon size={14} />
           </Button>
         )}
         {project.meta.repo && (
@@ -78,7 +78,7 @@ export const TemplateSplitScrollPin: React.FC<TemplateProps> = ({ project, index
             target="_blank"
             seed={`${project.slug}-split-repo`}
           >
-            Inspect Source Code
+            View code
           </Button>
         )}
       </div>
@@ -94,10 +94,8 @@ export const TemplateSplitScrollPin: React.FC<TemplateProps> = ({ project, index
             <h2 className={styles.projectTitle}>{project.meta.title}</h2>
           </div>
           <div className={styles.metaRibbon}>
-            <span className={styles.metaItem}>{project.meta.role || 'Design Engineer'}</span>
+            <span className={styles.metaItem}>{project.meta.role || 'Web Project'}</span>
             <span className={styles.metaItem}>{project.meta.year || '2026'}</span>
-            <span className={styles.metaItem}>Template 04 // Split-Pin</span>
-            <span className={styles.metaItem}>GhostBat101 Folio</span>
           </div>
         </header>
 
