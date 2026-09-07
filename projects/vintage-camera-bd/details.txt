@@ -1,7 +1,9 @@
-Next.js App Router renders static product sheets on edge servers with incremental cache invalidation.
+Easy product browsing.
 
-PostgreSQL database schemas maintain relational integrity across lens specifications, shutter formats, and historical production eras.
+Detailed product information.
 
-Custom PL/pgSQL database functions accelerate multi-attribute filtering and text indexing across vintage inventory.
+Search and filtering.
 
-Typed data contracts ensure zero runtime schema mismatches between administrative catalog inputs and client browsing surfaces.
+A clean shopping experience.
+
+Reliable product data.
