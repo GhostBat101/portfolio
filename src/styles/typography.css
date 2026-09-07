@@ -1,9 +1,9 @@
 /**
- * Typography: Editorial typographic classes for Syne, DM Sans, and Space Mono.
+ * Typography: Editorial typographic classes for Space Grotesk, DM Sans, and Space Mono.
  * Communicates with: tokens.css, globals.css, and component modules.
  */
 .font-display {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .font-body {
@@ -15,7 +15,7 @@
 }
 
 .display-hero {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 72px;
   font-weight: 800;
   line-height: 76px;
@@ -23,7 +23,7 @@
 }
 
 .headline-xl {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 48px;
   font-weight: 700;
   line-height: 52px;
@@ -31,7 +31,7 @@
 }
 
 .headline-lg {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 36px;
   font-weight: 700;
   line-height: 40px;
@@ -39,7 +39,7 @@
 }
 
 .headline-md {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 24px;
   font-weight: 600;
   line-height: 28px;
@@ -47,7 +47,7 @@
 }
 
 .headline-sm {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
