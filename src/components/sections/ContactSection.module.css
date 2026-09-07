@@ -4,7 +4,7 @@
  */
 .contact {
   border-bottom: var(--border-ink);
-  padding: 6rem 0;
+  padding: clamp(var(--space-2xl), 8vw, var(--space-4xl)) 0;
   position: relative;
 }
 
@@ -14,30 +14,22 @@
   border: var(--border-ink);
   box-shadow: var(--shadow-structural-lg);
   display: flex;
-  gap: 2.5rem;
+  gap: var(--space-xl);
   justify-content: space-between;
-  margin-bottom: 5rem;
-  padding: 3rem;
-}
-
-@media (max-width: 800px) {
-  .ctaBanner {
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 2rem;
-  }
+  margin-bottom: var(--space-3xl);
+  padding: var(--space-2xl);
 }
 
 .ctaContent {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--space-sm);
 }
 
 .ctaHeading {
   color: var(--color-primary);
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -47,7 +39,7 @@
 .ctaCopy {
   color: var(--color-neutral);
   font-family: 'DM Sans', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.5;
   margin: 0;
   max-width: 62ch;
@@ -65,34 +57,23 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.05em;
-  padding: 1rem 2rem;
+  min-height: 44px;
+  padding: var(--space-sm) var(--space-xl);
   text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   white-space: nowrap;
 }
 
-.ctaButton:hover {
-  box-shadow: var(--shadow-structural-lg);
-  transform: translate(-1px, -1px);
-}
-
 .grid {
   display: grid;
-  gap: 3.5rem;
+  gap: var(--space-xl);
   grid-template-columns: 1fr;
-}
-
-@media (min-width: 900px) {
-  .grid {
-    gap: 4.5rem;
-    grid-template-columns: 1fr 1.2fr;
-  }
 }
 
 .channelCol {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: var(--space-xl);
 }
 
 .kicker {
@@ -117,7 +98,7 @@
 .statementGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: var(--space-sm);
 }
 
 .statement {
@@ -128,7 +109,7 @@
   font-weight: 600;
   line-height: 1.45;
   margin: 0;
-  padding-left: 1.25rem;
+  padding-left: var(--space-md);
 }
 
 .statementSecondary {
@@ -138,14 +119,14 @@
   font-size: 1.05rem;
   line-height: 1.5;
   margin: 0;
-  padding-left: 1.25rem;
+  padding-left: var(--space-md);
 }
 
 .channelsList {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
 }
 
 .channelCard {
@@ -155,21 +136,22 @@
   box-shadow: var(--shadow-stamped);
   color: var(--color-primary);
   display: flex;
+  gap: var(--space-md);
   justify-content: space-between;
-  padding: 1.25rem 1.5rem;
+  padding: var(--space-md) var(--space-lg);
   text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.channelCard:hover {
-  box-shadow: var(--shadow-structural-lg);
-  transform: translate(-1px, -1px);
+.channelCard svg {
+  flex-shrink: 0;
 }
 
 .channelInfo {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: var(--space-2xs);
+  min-width: 0;
 }
 
 .channelLabel {
@@ -183,8 +165,10 @@
 
 .channelValue {
   font-family: 'Space Mono', monospace;
-  font-size: 14px;
+  font-size: clamp(11px, 3.2vw, 14px);
   font-weight: 700;
+  overflow-wrap: anywhere;
+  word-break: break-all;
 }
 
 .formCard {
@@ -193,8 +177,8 @@
   box-shadow: var(--shadow-structural-lg);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 2.5rem;
+  gap: var(--space-lg);
+  padding: var(--space-2xl);
   position: relative;
 }
 
@@ -203,7 +187,7 @@
   border-bottom: var(--border-ink-thin);
   display: flex;
   justify-content: space-between;
-  padding-bottom: 0.75rem;
+  padding-bottom: var(--space-sm);
 }
 
 .formTitle {
@@ -225,7 +209,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: var(--space-md);
 }
 
 .confirmationBox {
@@ -234,8 +218,8 @@
   box-shadow: var(--shadow-stamped-coral);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 2rem;
+  gap: var(--space-md);
+  padding: var(--space-xl);
   text-align: center;
 }
 
@@ -258,6 +242,8 @@
 .captchaWrapper {
   display: flex;
   justify-content: flex-start;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .errorText {
@@ -267,5 +253,86 @@
   font-weight: 500;
   line-height: 1.4;
   margin: 0;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    gap: var(--space-3xl);
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ctaBanner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg);
+  }
+
+  .formCard {
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .ctaBanner {
+    padding: var(--space-md);
+  }
+
+  .ctaButton {
+    justify-content: center;
+    min-height: 48px;
+    width: 100%;
+  }
+
+  .channelCard {
+    padding: var(--space-sm) var(--space-md);
+  }
+}
+
+@media (max-width: 360px) {
+  .formCard {
+    padding: var(--space-sm);
+  }
+
+  .captchaWrapper {
+    margin-bottom: -10px;
+    transform: scale(0.86);
+    transform-origin: left center;
+  }
+}
+
+@media (max-width: 330px) {
+  .captchaWrapper {
+    margin-bottom: -14px;
+    transform: scale(0.82);
+    transform-origin: left center;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ctaButton:hover {
+    box-shadow: var(--shadow-structural-lg);
+    transform: translate(-1px, -1px);
+  }
+
+  .channelCard:hover {
+    box-shadow: var(--shadow-structural-lg);
+    transform: translate(-1px, -1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctaButton,
+  .channelCard {
+    transition: none;
+  }
+
+  .ctaButton:hover,
+  .channelCard:hover {
+    transform: none;
+  }
 }
 
