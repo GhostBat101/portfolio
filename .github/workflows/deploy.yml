@@ -1,4 +1,4 @@
-﻿name: Deploy GhostBat101 Portfolio to GitHub Pages
+name: Deploy GhostBat101 Portfolio to GitHub Pages
 
 on:
   push:
@@ -39,6 +39,10 @@ jobs:
 
       - name: Build Static Site
         run: npm run build
+        env:
+          VITE_WEB3FORMS_KEY: ${{ secrets.VITE_WEB3FORMS_KEY }}
+          VITE_HCAPTCHA_SITEKEY: ${{ secrets.VITE_HCAPTCHA_SITEKEY }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
