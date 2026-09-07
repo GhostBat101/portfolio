@@ -1,6 +1,6 @@
 /**
  * ScanProjects: Build-time Node.js script scanning /projects, optimizing video, and compiling projects.json.
- * Communicates with: /projects directory, FFmpeg, public/projects, and src/data/projects.json.
+ * Communicates with: /projects directory, FFmpeg, public/projects, specs.txt, and src/data/projects.json.
  */
 import fs from 'fs';
 import path from 'path';
@@ -17,6 +17,23 @@ const TEMPLATES = [
 
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.svg']);
 const VIDEO_EXTENSIONS = new Set(['.mp4', '.webm', '.mov']);
+
+const STACK_TAXONOMY = [
+  { match: /\b(?:three\.?js|webgl|ogl|canvas)\b/i, label: '3D Graphics', value: 'Three.js WebGL Engine' },
+  { match: /\b(?:next(?:\.js)?)\b/i, label: 'Architecture', value: 'Next.js Hybrid Full-Stack' },
+  { match: /\b(?:react)\b/i, label: 'UI Architecture', value: 'React Component Tree' },
+  { match: /\b(?:typescript|ts)\b/i, label: 'Type Safety', value: 'Strict TypeScript' },
+  { match: /\b(?:postgres|postgresql|supabase)\b/i, label: 'Database', value: 'PostgreSQL Relational DB' },
+  { match: /\b(?:cloudflare|workers|edge)\b/i, label: 'Deployment', value: 'Cloudflare Edge Network' },
+  { match: /\b(?:gsap|anime)\b/i, label: 'Motion Engine', value: 'High-Performance Timeline' },
+];
+
+const DEFAULT_EDITORIAL_SPECS = [
+  { label: 'Architecture', value: 'Modern Web Architecture' },
+  { label: 'Interface', value: 'Responsive Editorial Layout' },
+  { label: 'Design System', value: 'GhostBat101 Tokens' },
+  { label: 'Platform', value: 'Modern Web & Mobile Viewports' },
+];
 
 export function slugToTitle(slug) {
   return slug
@@ -71,6 +88,80 @@ export function parseStatementFile(rawContent) {
     .split('\n')
     .map((line) => line.trim())
     .filter((line) => line.length > 0 && !line.startsWith('---'));
+}
+
+export function parseSpecsFile(rawContent, meta = {}, slug = '') {
+  const specs = [];
+  const seenLabels = new Set();
+
+  if (typeof rawContent === 'string' && rawContent.trim().length > 0) {
+    const lines = rawContent.split('\n');
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#') || trimmed.startsWith('//') || !trimmed.includes(':')) {
+        continue;
+      }
+
+      const separatorIndex = trimmed.indexOf(':');
+      const label = trimmed.slice(0, separatorIndex).trim();
+      const value = trimmed.slice(separatorIndex + 1).trim();
+
+      if (label && value) {
+        const lower = label.toLowerCase();
+        if (!seenLabels.has(lower)) {
+          seenLabels.add(lower);
+          specs.push({ label, value });
+        }
+      }
+    }
+  }
+
+  if (specs.length >= 4) {
+    return specs;
+  }
+
+  const safeMeta = meta && typeof meta === 'object' ? meta : {};
+  const stack = typeof safeMeta.stack === 'string' ? safeMeta.stack : '';
+
+  if (stack) {
+    for (const rule of STACK_TAXONOMY) {
+      if (specs.length >= 4) break;
+      if (rule.match.test(stack)) {
+        const lower = rule.label.toLowerCase();
+        if (!seenLabels.has(lower)) {
+          seenLabels.add(lower);
+          specs.push({ label: rule.label, value: rule.value });
+        }
+      }
+    }
+  }
+
+  if (specs.length < 4 && typeof safeMeta.role === 'string' && safeMeta.role.trim()) {
+    const lower = 'role';
+    if (!seenLabels.has(lower)) {
+      seenLabels.add(lower);
+      specs.push({ label: 'Role', value: safeMeta.role.trim() });
+    }
+  }
+
+  if (specs.length < 4 && safeMeta.year !== undefined && safeMeta.year !== null && String(safeMeta.year).trim()) {
+    const lower = 'timeline';
+    if (!seenLabels.has(lower)) {
+      seenLabels.add(lower);
+      specs.push({ label: 'Timeline', value: String(safeMeta.year).trim() });
+    }
+  }
+
+  for (const fallback of DEFAULT_EDITORIAL_SPECS) {
+    if (specs.length >= 4) break;
+    const lower = fallback.label.toLowerCase();
+    if (!seenLabels.has(lower)) {
+      seenLabels.add(lower);
+      specs.push({ label: fallback.label, value: fallback.value });
+    }
+  }
+
+  return specs;
 }
 
 export function sanitizeFileName(name) {
@@ -211,6 +302,10 @@ export function scanProjects(rootDir) {
     const rawDetails = fs.existsSync(detailsPath) ? fs.readFileSync(detailsPath, 'utf8') : '';
     const details = parseStatementFile(rawDetails);
 
+    const specsPath = path.join(folderPath, 'specs.txt');
+    const rawSpecs = fs.existsSync(specsPath) ? fs.readFileSync(specsPath, 'utf8') : '';
+    const specs = parseSpecsFile(rawSpecs, meta, slug);
+
     const mediaPath = path.join(folderPath, 'media');
     const mediaFiles = fs.existsSync(mediaPath) ? fs.readdirSync(mediaPath) : [];
     const { cover, gallery } = sortMediaFiles(mediaFiles, slug);
@@ -225,6 +320,7 @@ export function scanProjects(rootDir) {
       cover,
       gallery,
       template,
+      specs,
     });
 
     index += 1;
