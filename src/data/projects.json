@@ -27,8 +27,36 @@
       "name": "Screen Recording 2026-09-06 203457.mp4",
       "poster": "projects/flocon-resort/media/Screen_Recording_2026-09-06_203457-poster.jpg"
     },
-    "gallery": [],
-    "template": "editorial-stack"
+    "gallery": [
+      {
+        "src": "projects/flocon-resort/media/Screenshot 2026-09-07 203546.png",
+        "type": "image",
+        "name": "Screenshot 2026-09-07 203546.png"
+      }
+    ],
+    "template": "editorial-stack",
+    "specs": [
+      {
+        "label": "Architecture",
+        "value": "Hybrid SSR & Interactive Viewport"
+      },
+      {
+        "label": "3D Graphics",
+        "value": "Three.js WebGL Canvas Engine"
+      },
+      {
+        "label": "Rendering",
+        "value": "60 FPS Fluid Canvas Transitions"
+      },
+      {
+        "label": "Styling",
+        "value": "Custom Editorial Risograph Tokens"
+      },
+      {
+        "label": "State Model",
+        "value": "Responsive Viewport & Scene Controller"
+      }
+    ]
   },
   {
     "slug": "vintage-camera-bd",
@@ -59,7 +87,35 @@
       "name": "Recording 2026-09-04 151749.mp4",
       "poster": "projects/vintage-camera-bd/media/Recording_2026-09-04_151749-poster.jpg"
     },
-    "gallery": [],
-    "template": "media-left"
+    "gallery": [
+      {
+        "src": "projects/vintage-camera-bd/media/Screenshot 2026-09-07 203709.png",
+        "type": "image",
+        "name": "Screenshot 2026-09-07 203709.png"
+      }
+    ],
+    "template": "media-left",
+    "specs": [
+      {
+        "label": "Architecture",
+        "value": "Edge Serverless (OpenNext / Cloudflare)"
+      },
+      {
+        "label": "Database",
+        "value": "PostgreSQL via Supabase"
+      },
+      {
+        "label": "Search Engine",
+        "value": "Full-Text Camera Filter & Search"
+      },
+      {
+        "label": "Performance",
+        "value": "Sub-second TTFB & Edge Asset Caching"
+      },
+      {
+        "label": "Type Safety",
+        "value": "Strict End-to-End TypeScript"
+      }
+    ]
   }
 ]
