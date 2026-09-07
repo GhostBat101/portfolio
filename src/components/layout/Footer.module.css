@@ -5,7 +5,7 @@
 .footer {
   background-color: var(--color-surface);
   border-top: var(--border-ink);
-  padding: 3.5rem 0 3rem;
+  padding: clamp(var(--space-xl), 5vw, var(--space-2xl)) 0;
   position: relative;
 }
 
@@ -13,14 +13,14 @@
   align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
-  gap: 2.5rem;
+  gap: var(--space-xl);
   justify-content: space-between;
 }
 
 .brandGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   max-width: 440px;
 }
 
@@ -46,7 +46,7 @@
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   line-height: 1.5;
-  margin: 0.25rem 0 0.5rem;
+  margin: var(--space-2xs) 0 var(--space-xs);
 }
 
 .colophon {
@@ -59,14 +59,14 @@
   align-items: flex-end;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--space-lg);
 }
 
 .metaRibbon {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: var(--space-sm) var(--space-lg);
 }
 
 .metaLink {
@@ -80,10 +80,6 @@
   transition: color 0.15s ease;
 }
 
-.metaLink:hover {
-  color: var(--color-secondary);
-}
-
 .topButton {
   align-items: center;
   background-color: var(--color-surface-container);
@@ -95,18 +91,70 @@
   font-family: 'Space Mono', monospace;
   font-size: 12px;
   font-weight: 700;
-  gap: 0.5rem;
-  padding: 0.6rem 1rem;
+  gap: var(--space-xs);
+  justify-content: center;
+  min-height: 44px;
+  padding: var(--space-xs) var(--space-md);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.topButton:hover {
-  box-shadow: var(--shadow-structural-lg);
-  transform: translate(-1px, -1px);
-}
-
 @media (max-width: 768px) {
+  .inner {
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .brandGroup {
+    max-width: 100%;
+  }
+
   .actionGroup {
     align-items: flex-start;
+    width: 100%;
+  }
+
+  .metaRibbon {
+    gap: var(--space-xs) var(--space-md);
+    width: 100%;
+  }
+
+  .metaLink {
+    align-items: center;
+    display: inline-flex;
+    min-height: 44px;
+    padding: var(--space-2xs) var(--space-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .metaRibbon {
+    gap: var(--space-2xs) var(--space-sm);
+  }
+
+  .topButton {
+    min-height: 48px;
+    width: 100%;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .metaLink:hover {
+    color: var(--color-secondary);
+  }
+
+  .topButton:hover {
+    box-shadow: var(--shadow-structural-lg);
+    transform: translate(-1px, -1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metaLink,
+  .topButton {
+    transition: none;
+  }
+
+  .topButton:hover {
+    transform: none;
   }
 }
