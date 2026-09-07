@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ProjectSpecPlate: Risograph editorial dossier plate rendering project technical specifications.
  * Communicates with: ProjectSpecPlate.module.css, asymmetricRadius.ts, project.ts, and project layout templates.
  */
