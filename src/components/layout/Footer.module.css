@@ -5,36 +5,61 @@
 .footer {
   background-color: var(--color-surface);
   border-top: var(--border-ink);
-  padding: 3rem 0;
+  padding: 3.5rem 0 3rem;
   position: relative;
 }
 
 .inner {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 2.5rem;
   justify-content: space-between;
 }
 
 .brandGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
+  max-width: 440px;
 }
 
 .brandText {
   color: var(--color-primary);
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.02em;
+}
+
+.tagline {
+  color: var(--color-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.subline {
+  color: var(--color-neutral);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0.25rem 0 0.5rem;
 }
 
 .colophon {
   color: var(--color-neutral);
   font-family: 'Space Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
+}
+
+.actionGroup {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .metaRibbon {
@@ -45,9 +70,9 @@
 }
 
 .metaLink {
-  color: var(--color-neutral);
+  color: var(--color-primary);
   font-family: 'Space Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-decoration: none;
@@ -68,14 +93,20 @@
   cursor: pointer;
   display: inline-flex;
   font-family: 'Space Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   gap: 0.5rem;
-  padding: 0.5rem 0.85rem;
+  padding: 0.6rem 1rem;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .topButton:hover {
   box-shadow: var(--shadow-structural-lg);
   transform: translate(-1px, -1px);
+}
+
+@media (max-width: 768px) {
+  .actionGroup {
+    align-items: flex-start;
+  }
 }
