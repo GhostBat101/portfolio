@@ -14,7 +14,7 @@ interface NavItem {
 const NAV_ITEMS: readonly NavItem[] = [
   { label: 'Works', href: '#projects' },
   { label: 'Index', href: '#project-index' },
-  { label: 'About', href: '#about' },
+  { label: 'Workflow', href: '#workflow' },
   { label: 'Contact', href: '#contact' },
 ];
 
