@@ -1,6 +1,6 @@
 /**
- * HeaderStyles: Fixed editorial masthead with brand mark, issue ribbon, and nav links.
- * Communicates with: Header.tsx and tokens.css.
+ * HeaderStyles: Fixed masthead, tactile mobile menu button, and risograph drawer.
+ * Communicates with: Header.tsx, tokens.css, and typography.css.
  */
 .header {
   background-color: var(--color-surface);
@@ -23,6 +23,7 @@
   align-items: center;
   display: flex;
   gap: 0.75rem;
+  min-height: 44px;
 }
 
 .brandMark {
@@ -47,7 +48,7 @@
   letter-spacing: -0.02em;
 }
 
-.nav {
+.desktopNav {
   align-items: center;
   display: flex;
   gap: 1.5rem;
@@ -78,12 +79,191 @@
   padding-left: 1rem;
 }
 
+.menuToggle {
+  align-items: center;
+  background-color: var(--color-surface);
+  border: var(--border-ink);
+  box-shadow: var(--shadow-stamped);
+  color: var(--color-primary);
+  cursor: pointer;
+  display: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  height: 44px;
+  justify-content: center;
+  letter-spacing: 0.08em;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 0.875rem;
+  touch-action: manipulation;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+  user-select: none;
+}
+
+.menuToggle:hover {
+  background-color: var(--color-surface-container);
+}
+
+.menuToggle:active {
+  box-shadow: 1px 1px 0px var(--color-primary);
+  transform: translate(2px, 2px);
+}
+
+.toggleText {
+  display: inline-block;
+  line-height: 1;
+}
+
+.drawerBackdrop {
+  background-color: color-mix(in srgb, var(--color-on-surface) 40%, transparent);
+  bottom: 0;
+  display: none;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 64px;
+  transition: opacity 0.25s ease;
+  z-index: 98;
+}
+
+.drawerBackdropOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobileDrawer {
+  background-color: var(--color-surface);
+  border-bottom: var(--border-ink-thick);
+  box-shadow: var(--shadow-structural-lg);
+  display: none;
+  left: 0;
+  max-height: calc(100dvh - 64px);
+  opacity: 0;
+  overflow-y: auto;
+  pointer-events: none;
+  position: absolute;
+  top: 64px;
+  transform: translateY(-8px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  width: 100%;
+  z-index: 99;
+}
+
+.mobileDrawerOpen {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.drawerInner {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem var(--margin-mobile);
+}
+
+.drawerList {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawerLink {
+  align-items: center;
+  border-bottom: var(--border-ink-thin);
+  color: var(--color-primary);
+  display: flex;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  gap: 1rem;
+  letter-spacing: -0.01em;
+  min-height: 52px;
+  padding: 0.875rem 0;
+  text-decoration: none;
+  transition: color 0.15s ease, padding-left 0.15s ease;
+}
+
+.drawerLink:last-child {
+  border-bottom: none;
+}
+
+.drawerLink:hover,
+.drawerLink:active {
+  color: var(--color-secondary);
+  padding-left: 0.5rem;
+}
+
+.drawerItemIndex {
+  color: var(--color-secondary);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.drawerItemLabel {
+  flex: 1;
+}
+
+.drawerFooter {
+  border-top: var(--border-ink-thin);
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+}
+
+.drawerStatusBadge {
+  align-items: center;
+  background-color: var(--color-surface-container);
+  border: var(--border-ink-thin);
+  display: inline-flex;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+}
+
+.statusDot {
+  background-color: var(--color-tertiary);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--color-primary);
+  display: inline-block;
+  height: 7px;
+  width: 7px;
+}
+
+.statusText {
+  color: var(--color-neutral);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
 @media (max-width: 768px) {
-  .issueTag {
+  .desktopNav {
     display: none;
   }
 
-  .nav {
-    gap: 0.75rem;
+  .menuToggle {
+    display: inline-flex;
+  }
+
+  .drawerBackdrop {
+    display: block;
+  }
+
+  .mobileDrawer {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menuToggle,
+  .mobileDrawer,
+  .drawerBackdrop,
+  .drawerLink {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    transform: none !important;
   }
 }
