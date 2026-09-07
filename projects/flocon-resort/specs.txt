@@ -1,0 +1,5 @@
+Architecture: Hybrid SSR & Interactive Viewport
+3D Graphics: Three.js WebGL Canvas Engine
+Rendering: 60 FPS Fluid Canvas Transitions
+Styling: Custom Editorial Risograph Tokens
+State Model: Responsive Viewport & Scene Controller
