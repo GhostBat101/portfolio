@@ -13,24 +13,29 @@ export const LandingSection: React.FC = () => {
     <section id="hero" className={styles.landing}>
       <div className={`container ${styles.grid}`}>
         <div className={styles.contentCol}>
-          <span className={styles.kicker}>FOLIO EDITION // 2026</span>
+          <span className={styles.kicker}>WEB DESIGN &amp; DEVELOPMENT</span>
 
           <SplitTextReveal
-            text="Architecting expressive interfaces with tactile mechanical precision."
+            text="Websites that look good and work even better."
             tag="h1"
             className={styles.headline}
           />
 
-          <p className={styles.statement}>
-            GhostBat101 develops deliberate interactive systems where organic geometry meets industrial risograph discipline.
-          </p>
+          <div className={styles.statementGroup}>
+            <p className={styles.statement}>
+              I design and build websites for businesses, products, and ideas. I care about how a site looks, how it feels to use, and whether it actually does its job.
+            </p>
+            <p className={styles.statementSecondary}>
+              From a simple business website to a more interactive project, I build each one around what you actually need.
+            </p>
+          </div>
 
           <div className={styles.actions}>
             <Button variant="primary" href="#projects" seed="hero-cta-works">
-              Explore Selected Works
+              See my work
             </Button>
-            <Button variant="ghost" href="#workflow" seed="hero-cta-workflow">
-              Explore My Workflow
+            <Button variant="ghost" href="#process" seed="hero-cta-process">
+              How I work
             </Button>
           </div>
         </div>
@@ -38,8 +43,8 @@ export const LandingSection: React.FC = () => {
         <div className={styles.visualCol}>
           <ShadedPortrait
             seed="ghostbat-hero-portrait"
-            captionTitle="CREATOR SPECIMEN // GHOSTBAT101"
-            specBadge="RISO // 4-INK"
+            captionTitle="GhostBat101"
+            specBadge="Design & Code"
             radiusTier="large"
           />
         </div>
