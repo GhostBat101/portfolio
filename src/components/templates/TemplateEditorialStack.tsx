@@ -32,10 +32,8 @@ export const TemplateEditorialStack: React.FC<TemplateProps> = ({ project, index
             <h2 className={styles.projectTitle}>{project.meta.title}</h2>
           </div>
           <div className={styles.metaRibbon}>
-            <span className={styles.metaItem}>{project.meta.role || 'Design Engineer'}</span>
+            <span className={styles.metaItem}>{project.meta.role || 'Web Project'}</span>
             <span className={styles.metaItem}>{project.meta.year || '2026'}</span>
-            <span className={styles.metaItem}>Template 05 // Editorial-Stack</span>
-            <span className={styles.metaItem}>GhostBat101 Folio</span>
           </div>
         </header>
 
@@ -47,7 +45,7 @@ export const TemplateEditorialStack: React.FC<TemplateProps> = ({ project, index
               seed={`${project.slug}-stack-media`}
               radiusSize="large"
               aspectRatio="16 / 9"
-              captionPrefix="EDITORIAL PLATE"
+              captionPrefix="PREVIEW"
             />
           )}
 
@@ -89,7 +87,7 @@ export const TemplateEditorialStack: React.FC<TemplateProps> = ({ project, index
                     target="_blank"
                     seed={`${project.slug}-editorial-live`}
                   >
-                    Launch Interactive Experience <ExternalLinkIcon size={14} />
+                    Visit website <ExternalLinkIcon size={14} />
                   </Button>
                 )}
                 {project.meta.repo && (
@@ -99,7 +97,7 @@ export const TemplateEditorialStack: React.FC<TemplateProps> = ({ project, index
                     target="_blank"
                     seed={`${project.slug}-editorial-repo`}
                   >
-                    Inspect Source Code
+                    View code
                   </Button>
                 )}
               </div>
