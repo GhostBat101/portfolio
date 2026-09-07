@@ -1,6 +1,6 @@
 /**
  * TemplateMediaLeft: Project layout with prominent pinned media left and narrative statements right.
- * Communicates with: Templates.module.css, MediaFrame.tsx, Button.tsx, Badge.tsx, and Project.ts.
+ * Communicates with: Templates.module.css, MediaFrame.tsx, ProjectSpecPlate.tsx, Button.tsx, Badge.tsx, and Project.ts.
  */
 import React from 'react';
 import { Project } from '@/types/project';
@@ -8,11 +8,12 @@ import { Button } from '@/components/ui/Button/Button';
 import { Badge, BadgeTone } from '@/components/ui/Badge/Badge';
 import { ExternalLinkIcon } from '@/components/ui/Icons/CustomIcons';
 import { MediaFrame } from '@/components/ui/MediaFrame/MediaFrame';
+import { ProjectSpecPlate } from '@/components/ui/ProjectSpecPlate/ProjectSpecPlate';
 import styles from './Templates.module.css';
 
 export interface TemplateProps {
-  project: Project;
-  indexNumber: string;
+  readonly project: Project;
+  readonly indexNumber: string;
 }
 
 const BADGE_TONES: readonly BadgeTone[] = ['terracotta', 'aqua', 'ochre'];
@@ -45,9 +46,11 @@ export const TemplateMediaLeft: React.FC<TemplateProps> = ({ project, indexNumbe
                 alt={project.meta.title}
                 seed={`${project.slug}-media-left`}
                 radiusSize="large"
+                aspectRatio="16 / 9"
                 captionPrefix="PREVIEW"
               />
             )}
+            <ProjectSpecPlate specs={project.specs} seed={`${project.slug}-specs`} />
           </div>
 
           <div className={styles.statementList}>
