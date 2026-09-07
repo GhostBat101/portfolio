@@ -156,7 +156,6 @@ export function getFfmpegPath() {
       execSync(`"${candidate}" -version`, { stdio: 'ignore' });
       return candidate;
     } catch {
-      // try next
     }
   }
   return null;
@@ -166,7 +165,7 @@ export function processVideo(ffmpegBin, sourceVideoPath, destWebVideoPath, destP
   if (!fs.existsSync(destWebVideoPath)) {
     try {
       execSync(
-        `"${ffmpegBin}" -y -i "${sourceVideoPath}" -vf "scale='min(960,iw)':-2" -c:v libx264 -crf 28 -preset fast -pix_fmt yuv420p -an -movflags +faststart "${destWebVideoPath}"`,
+        `"${ffmpegBin}" -y -i "${sourceVideoPath}" -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -crf 20 -preset medium -pix_fmt yuv420p -an -movflags +faststart "${destWebVideoPath}"`,
         { stdio: 'ignore' }
       );
     } catch {
@@ -177,11 +176,10 @@ export function processVideo(ffmpegBin, sourceVideoPath, destWebVideoPath, destP
   if (!fs.existsSync(destPosterPath)) {
     try {
       execSync(
-        `"${ffmpegBin}" -y -ss 00:00:01 -i "${sourceVideoPath}" -vframes 1 -vf "scale='min(960,iw)':-2" "${destPosterPath}"`,
+        `"${ffmpegBin}" -y -ss 00:00:01 -i "${sourceVideoPath}" -vframes 1 -q:v 2 -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" "${destPosterPath}"`,
         { stdio: 'ignore' }
       );
     } catch {
-      // ignore
     }
   }
 }
