@@ -35,8 +35,8 @@ export const Footer: React.FC = () => {
           <a href="#project-index" className={styles.metaLink}>
             Index
           </a>
-          <a href="#about" className={styles.metaLink}>
-            Thesis
+          <a href="#workflow" className={styles.metaLink}>
+            Workflow
           </a>
           <a href="#contact" className={styles.metaLink}>
             Dispatch
