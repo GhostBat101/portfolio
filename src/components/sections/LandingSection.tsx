@@ -29,8 +29,8 @@ export const LandingSection: React.FC = () => {
             <Button variant="primary" href="#projects" seed="hero-cta-works">
               Explore Selected Works
             </Button>
-            <Button variant="ghost" href="#about" seed="hero-cta-thesis">
-              Read Design Thesis
+            <Button variant="ghost" href="#workflow" seed="hero-cta-workflow">
+              Explore My Workflow
             </Button>
           </div>
         </div>
