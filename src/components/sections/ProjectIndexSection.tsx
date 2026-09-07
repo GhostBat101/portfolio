@@ -1,6 +1,6 @@
 /**
  * ProjectIndexSection: Broadsheet table-of-contents index with hover preview plate.
- * Communicates with: ProjectIndexSection.module.css, Badge.tsx, and ProjectDetailSection.tsx.
+ * Communicates with: ProjectIndexSection.module.css, Badge.tsx, ProjectDetailSection.tsx, and asset URL resolution.
  */
 import React, { useState, useCallback } from 'react';
 import { Project } from '@/types/project';
@@ -13,6 +13,15 @@ export interface ProjectIndexSectionProps {
 }
 
 const BADGE_TONES: readonly BadgeTone[] = ['terracotta', 'aqua', 'ochre'];
+const resolveAssetUrl = (rawPath: string): string => {
+  if (rawPath.startsWith('http://') || rawPath.startsWith('https://') || rawPath.startsWith('data:')) {
+    return rawPath;
+  }
+  const basePath = import.meta.env.BASE_URL || '/';
+  const normalizedBase = basePath.endsWith('/') ? basePath : `${basePath}/`;
+  const normalizedPath = rawPath.startsWith('/') ? rawPath.slice(1) : rawPath;
+  return `${normalizedBase}${normalizedPath}`;
+};
 
 export const ProjectIndexSection: React.FC<ProjectIndexSectionProps> = ({ projects }) => {
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
@@ -124,8 +133,8 @@ export const ProjectIndexSection: React.FC<ProjectIndexSectionProps> = ({ projec
           >
             {hoveredProject.cover.type === 'video' ? (
               <video
-                src={hoveredProject.cover.src}
-                poster={hoveredProject.cover.poster}
+                src={resolveAssetUrl(hoveredProject.cover.src)}
+                poster={resolveAssetUrl(hoveredProject.cover.poster ?? '')}
                 className={styles.previewImage}
                 autoPlay
                 muted
@@ -134,7 +143,7 @@ export const ProjectIndexSection: React.FC<ProjectIndexSectionProps> = ({ projec
               />
             ) : (
               <img
-                src={hoveredProject.cover.src}
+                src={resolveAssetUrl(hoveredProject.cover.src)}
                 alt={hoveredProject.meta.title}
                 className={styles.previewImage}
               />
@@ -148,4 +157,4 @@ export const ProjectIndexSection: React.FC<ProjectIndexSectionProps> = ({ projec
       </div>
     </section>
   );
-};
+};
