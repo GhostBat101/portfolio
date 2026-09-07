@@ -1,8 +1,9 @@
 /**
- * ContactSection: Contact form, direct communication channels, and final project call-to-action.
- * Communicates with: ContactSection.module.css, Input.tsx, Checkbox.tsx, Button.tsx, and CustomIcons.tsx.
+ * ContactSection: Contact form with Web3Forms integration, hCaptcha, and direct communication channels.
+ * Communicates with: ContactSection.module.css, Input.tsx, Checkbox.tsx, Button.tsx, CustomIcons.tsx, and Web3Forms API.
  */
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { Input } from '@/components/ui/Form/Input';
 import { Checkbox } from '@/components/ui/Form/Checkbox';
 import { Button } from '@/components/ui/Button/Button';
@@ -15,6 +16,19 @@ interface DirectChannel {
   readonly value: string;
   readonly href: string;
 }
+
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
+
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
+const HCAPTCHA_SITEKEY = import.meta.env.VITE_HCAPTCHA_SITEKEY;
+
+const EMAIL_SUBJECTS = [
+  '🦇 New project opportunity just landed',
+  '🚀 Someone wants to build something cool',
+  '📬 Fresh client inquiry — check it out',
+  '✨ A potential client just reached out',
+];
 
 const DIRECT_CHANNELS: readonly DirectChannel[] = [
   {
@@ -29,6 +43,9 @@ const DIRECT_CHANNELS: readonly DirectChannel[] = [
   },
 ];
 
+const pickRandomSubject = (): string =>
+  EMAIL_SUBJECTS[Math.floor(Math.random() * EMAIL_SUBJECTS.length)];
+
 export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -36,24 +53,71 @@ export const ContactSection: React.FC = () => {
     inquiry: '',
     consent: false,
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [captchaToken, setCaptchaToken] = useState('');
+  const [honeypot, setHoneypot] = useState('');
+  const captchaRef = useRef<HCaptcha>(null);
 
   const ctaRadius = getAsymmetricRadius('contact-cta-banner', 'large');
   const ctaBtnRadius = getAsymmetricRadius('contact-cta-btn', 'medium');
   const formRadius = getAsymmetricRadius('contact-form-plate', 'large');
   const confirmRadius = getAsymmetricRadius('contact-confirm-plate', 'medium');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.inquiry) {
+
+    if (!formData.name || !formData.email || !formData.inquiry) return;
+    if (!captchaToken) {
+      setErrorMessage('Please complete the captcha verification.');
+      setStatus('error');
       return;
     }
-    setSubmitted(true);
+
+    setStatus('submitting');
+    setErrorMessage('');
+
+    const payload = {
+      access_key: WEB3FORMS_KEY,
+      subject: pickRandomSubject(),
+      from_name: 'GhostBat101 Portfolio',
+      name: formData.name,
+      email: formData.email,
+      message: formData.inquiry,
+      botcheck: honeypot,
+      'h-captcha-response': captchaToken,
+    };
+
+    try {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setStatus('success');
+      } else {
+        setErrorMessage(data.message || 'Something went wrong. Please try again.');
+        setStatus('error');
+      }
+    } catch {
+      setErrorMessage('Network error. Please check your connection and try again.');
+      setStatus('error');
+    } finally {
+      captchaRef.current?.resetCaptcha();
+      setCaptchaToken('');
+    }
   };
 
   const handleReset = () => {
     setFormData({ name: '', email: '', inquiry: '', consent: false });
-    setSubmitted(false);
+    setStatus('idle');
+    setErrorMessage('');
+    setCaptchaToken('');
+    setHoneypot('');
   };
 
   const handleStartProject = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -132,7 +196,7 @@ export const ContactSection: React.FC = () => {
               <span className={styles.formBadge}>GHOSTBAT101</span>
             </div>
 
-            {submitted ? (
+            {status === 'success' ? (
               <div className={styles.confirmationBox} style={{ borderRadius: confirmRadius }}>
                 <h3 className={styles.confirmationTitle}>Thanks for reaching out.</h3>
                 <p className={styles.confirmationText}>
@@ -146,6 +210,16 @@ export const ContactSection: React.FC = () => {
               </div>
             ) : (
               <form className={styles.form} onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="botcheck"
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+
                 <Input
                   label="Your name"
                   placeholder="Your name"
@@ -183,8 +257,26 @@ export const ContactSection: React.FC = () => {
                   seed="check-consent"
                 />
 
-                <Button variant="primary" type="submit" seed="contact-submit">
-                  Send message
+                <div className={styles.captchaWrapper}>
+                  <HCaptcha
+                    sitekey={HCAPTCHA_SITEKEY}
+                    onVerify={(token) => setCaptchaToken(token)}
+                    onExpire={() => setCaptchaToken('')}
+                    ref={captchaRef}
+                  />
+                </div>
+
+                {status === 'error' && errorMessage && (
+                  <p className={styles.errorText}>{errorMessage}</p>
+                )}
+
+                <Button
+                  variant="primary"
+                  type="submit"
+                  seed="contact-submit"
+                  disabled={status === 'submitting'}
+                >
+                  {status === 'submitting' ? 'Sending...' : 'Send message'}
                 </Button>
               </form>
             )}
