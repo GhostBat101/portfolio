@@ -58,7 +58,7 @@
   background-color: var(--color-primary);
   border: var(--border-ink);
   box-shadow: var(--shadow-stamped);
-  color: var(--color-paper);
+  color: var(--color-paper-light);
   display: inline-flex;
   flex-shrink: 0;
   font-family: 'Space Mono', monospace;
