@@ -32,10 +32,8 @@ export const TemplateMediaLeft: React.FC<TemplateProps> = ({ project, indexNumbe
             <h2 className={styles.projectTitle}>{project.meta.title}</h2>
           </div>
           <div className={styles.metaRibbon}>
-            <span className={styles.metaItem}>{project.meta.role || 'Design Engineer'}</span>
+            <span className={styles.metaItem}>{project.meta.role || 'Web Project'}</span>
             <span className={styles.metaItem}>{project.meta.year || '2026'}</span>
-            <span className={styles.metaItem}>Template 01 // Media-Left</span>
-            <span className={styles.metaItem}>GhostBat101 Folio</span>
           </div>
         </header>
 
@@ -47,7 +45,7 @@ export const TemplateMediaLeft: React.FC<TemplateProps> = ({ project, indexNumbe
                 alt={project.meta.title}
                 seed={`${project.slug}-media-left`}
                 radiusSize="large"
-                captionPrefix="COVER SPECIMEN"
+                captionPrefix="PREVIEW"
               />
             )}
           </div>
@@ -85,7 +83,7 @@ export const TemplateMediaLeft: React.FC<TemplateProps> = ({ project, indexNumbe
                   target="_blank"
                   seed={`${project.slug}-live`}
                 >
-                  Launch Interactive Experience <ExternalLinkIcon size={14} />
+                  Visit website <ExternalLinkIcon size={14} />
                 </Button>
               )}
               {project.meta.repo && (
@@ -95,7 +93,7 @@ export const TemplateMediaLeft: React.FC<TemplateProps> = ({ project, indexNumbe
                   target="_blank"
                   seed={`${project.slug}-repo`}
                 >
-                  Inspect Source Code
+                  View code
                 </Button>
               )}
             </div>
