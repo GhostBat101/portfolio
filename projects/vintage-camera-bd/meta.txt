@@ -1,7 +1,7 @@
 title: Vintage Camera BD
 year: 2026
-role: Full-Stack Systems Engineer
-stack: Next.js, TypeScript, PostgreSQL, PL/pgSQL
+role: Online camera store and catalogue
+stack: Next.js, TypeScript, PostgreSQL
 live: https://vintage-camera-bd.ghostbat-workspace.workers.dev/
 repo: https://github.com/GhostBat101/Vintage_Camera_BD
 order: 2
