@@ -20,6 +20,10 @@ node_modules/
 coverage/
 playwright-report/
 test-results/
+tests/
+
+# Sensitive Local Documentation
+docs/
 
 # Production Build Artifacts
 dist/
