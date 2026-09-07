@@ -4,39 +4,47 @@
  */
 .section {
   border-bottom: var(--border-ink);
-  padding: 5rem 0;
+  padding: var(--space-3xl) 0;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-xl) 0;
+  }
 }
 
 .headerRow {
   align-items: flex-end;
   border-bottom: var(--border-ink);
   display: flex;
-  gap: 2rem;
+  gap: var(--space-xl);
   justify-content: space-between;
-  margin-bottom: 3rem;
-  padding-bottom: 1.5rem;
+  margin-bottom: var(--space-2xl);
+  padding-bottom: var(--space-lg);
 }
 
 @media (max-width: 768px) {
   .headerRow {
     align-items: flex-start;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
   }
 }
 
 .titleGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-xs);
 }
 
 .introGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
   max-width: 680px;
 }
 
@@ -80,6 +88,7 @@
   font-family: 'Space Mono', monospace;
   font-size: 12px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .indexList {
@@ -104,22 +113,14 @@
 .indexLink {
   align-items: center;
   display: grid;
-  gap: 1.5rem;
+  gap: var(--space-lg);
   grid-template-columns: 48px 1.5fr 1fr 80px;
-  padding: 1.25rem 0.5rem;
+  min-height: var(--space-2xl);
+  padding: var(--space-md) var(--space-xs);
   text-decoration: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   width: 100%;
-}
-
-@media (max-width: 768px) {
-  .indexLink {
-    gap: 0.75rem;
-    grid-template-columns: 36px 1fr auto;
-  }
-
-  .stackCol {
-    display: none;
-  }
 }
 
 .indexNumber {
@@ -135,7 +136,9 @@
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
+  overflow-wrap: break-word;
   transition: transform 0.15s ease, color 0.15s ease;
+  word-break: break-word;
 }
 
 .indexItem:hover .indexTitle {
@@ -147,7 +150,8 @@
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: var(--space-2xs);
+  max-width: 100%;
 }
 
 .yearCol {
@@ -156,6 +160,7 @@
   font-size: 12px;
   font-weight: 700;
   text-align: right;
+  white-space: nowrap;
 }
 
 .previewFrame {
@@ -182,7 +187,7 @@
   border-top: var(--border-ink-thin);
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0.75rem;
+  padding: var(--space-xs) var(--space-sm);
 }
 
 .previewSlug {
@@ -192,4 +197,78 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .indexLink {
+    align-items: start;
+    gap: var(--space-xs) var(--space-sm);
+    grid-template-areas:
+      "num title year"
+      "num stack stack";
+    grid-template-columns: 36px 1fr auto;
+    min-height: var(--space-2xl);
+    padding: var(--space-sm) var(--space-2xs);
+  }
+
+  .indexNumber {
+    align-self: start;
+    grid-area: num;
+    padding-top: 2px;
+  }
+
+  .indexTitle {
+    align-self: start;
+    font-size: 1.1rem;
+    grid-area: title;
+    line-height: 1.25;
+  }
+
+  .yearCol {
+    align-self: start;
+    grid-area: year;
+    justify-self: end;
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .stackCol {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    grid-area: stack;
+    margin-top: var(--space-2xs);
+  }
+}
+
+@media (max-width: 360px) {
+  .indexLink {
+    gap: var(--space-2xs) var(--space-xs);
+    grid-template-columns: 28px 1fr auto;
+    padding: var(--space-xs) 0;
+  }
+
+  .indexTitle {
+    font-size: 1rem;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .previewFrame {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indexItem,
+  .indexTitle {
+    transition: none !important;
+  }
+
+  .indexItem:hover .indexTitle {
+    transform: none !important;
+  }
 }
