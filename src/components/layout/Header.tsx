@@ -12,9 +12,9 @@ interface NavItem {
 }
 
 const NAV_ITEMS: readonly NavItem[] = [
-  { label: 'Works', href: '#projects' },
-  { label: 'Index', href: '#project-index' },
-  { label: 'Workflow', href: '#workflow' },
+  { label: 'Work', href: '#projects' },
+  { label: 'Process', href: '#process' },
+  { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -50,7 +50,7 @@ export const Header: React.FC = () => {
               {item.label}
             </a>
           ))}
-          <span className={styles.issueTag}>VOL. 26 / FOLIO</span>
+          <span className={styles.issueTag}>Available for new projects</span>
         </nav>
       </div>
     </header>
