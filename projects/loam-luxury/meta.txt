@@ -4,5 +4,6 @@ role: Interactive luxury monograph & sensory fragrance showcase
 stack: TypeScript, Tailwind CSS, Lenis, Vite
 live: https://ghostbat101.github.io/loam-luxury/
 repo: https://github.com/GhostBat101/loam-luxury
-order: 3
+order: 1
 featured: true
+template: editorial-stack
