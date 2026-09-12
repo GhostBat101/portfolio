@@ -64,13 +64,13 @@ export const ProjectIndexSection: React.FC<ProjectIndexSectionProps> = ({ projec
         <div className={styles.headerRow}>
           <div className={styles.titleGroup}>
             <span className={styles.kicker}>SELECTED WORK</span>
-            <h2 className={styles.title}>A few things I've built.</h2>
+            <h2 className={styles.title}>Recent projects &amp; technical showcases.</h2>
             <div className={styles.introGroup}>
               <p className={styles.introText}>
-                Every project has a different reason for existing. Some are made to sell, some to inform, and some simply to explore what a website can do.
+                Each project represents a distinct engineering challenge—from real-time WebGL viewports and serverless commerce catalogs to mathematical sensory simulations.
               </p>
               <p className={styles.introSub}>
-                Here are a few examples.
+                Built from scratch with modern architecture, fluid motion, and strict attention to detail.
               </p>
             </div>
           </div>
