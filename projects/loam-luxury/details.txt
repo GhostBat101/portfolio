@@ -1,9 +1,9 @@
 Dynamic SVG Bézier curve simulations.
 
-Real-time geometric sillage calculation engine.
+Real time geometric sillage calculation engine.
 
-60 FPS hardware-accelerated CSS caustics.
+60 FPS hardware accelerated CSS caustics.
 
-Adaptive dual-layer reduced-motion engine.
+Adaptive dual layer motion preference engine.
 
 Strict unrounded 0px architectural geometry.
