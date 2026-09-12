@@ -13,29 +13,29 @@ export const LandingSection: React.FC = () => {
     <section id="hero" className={styles.landing}>
       <div className={`container ${styles.grid}`}>
         <div className={styles.contentCol}>
-          <span className={styles.kicker}>WEB DESIGN &amp; DEVELOPMENT</span>
+          <span className={styles.kicker}>CREATIVE WEB DEVELOPMENT &amp; DIGITAL CRAFTSMANSHIP</span>
 
           <SplitTextReveal
-            text="Websites that look good and work even better."
+            text="High-impact websites built for speed, feel, and conversion."
             tag="h1"
             className={styles.headline}
           />
 
           <div className={styles.statementGroup}>
             <p className={styles.statement}>
-              I design and build websites for businesses, products, and ideas. I care about how a site looks, how it feels to use, and whether it actually does its job.
+              I design and develop high-performance websites and digital tools for founders, brands, and creative teams. Every project is custom-built—combining distinctive editorial aesthetics with rock-solid frontend engineering.
             </p>
             <p className={styles.statementSecondary}>
-              From a simple business website to a more interactive project, I build each one around what you actually need.
+              No generic templates. No agency layers. Just thoughtful design, fluid interactions, and clean code built around what your business actually needs.
             </p>
           </div>
 
           <div className={styles.actions}>
             <Button variant="primary" href="#projects" seed="hero-cta-works">
-              See my work
+              Explore Featured Work
             </Button>
             <Button variant="ghost" href="#process" seed="hero-cta-process">
-              How I work
+              How I Build
             </Button>
           </div>
         </div>
