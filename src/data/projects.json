@@ -1,15 +1,77 @@
 [
   {
+    "slug": "loam-luxury",
+    "meta": {
+      "title": "Loam Luxury",
+      "order": 1,
+      "year": "2026",
+      "role": "Interactive luxury monograph & sensory fragrance showcase",
+      "stack": "TypeScript, Tailwind CSS, Lenis, Vite",
+      "live": "https://ghostbat101.github.io/loam-luxury/",
+      "repo": "https://github.com/GhostBat101/loam-luxury",
+      "featured": true,
+      "template": "editorial-stack"
+    },
+    "overview": [
+      "An interactive digital monograph and technical demonstration exploring the intersection of luxury perfumery, coastal bathymetry, and modern frontend craft.",
+      "Built around physical materiality, evoking cold sea spray, unrounded crystal flacons, and mineral evaporation without heavy 3D runtimes."
+    ],
+    "details": [
+      "Dynamic SVG Bézier curve simulations.",
+      "Real time geometric sillage calculation engine.",
+      "60 FPS hardware accelerated CSS caustics.",
+      "Adaptive dual layer motion preference engine.",
+      "Strict unrounded 0px architectural geometry."
+    ],
+    "cover": {
+      "src": "projects/loam-luxury/media/Recording_2026-09-12_172707-web.mp4",
+      "type": "video",
+      "name": "Recording 2026-09-12 172707.mp4",
+      "poster": "projects/loam-luxury/media/Screenshot 2026-09-12 172543.png"
+    },
+    "gallery": [
+      {
+        "src": "projects/loam-luxury/media/Screenshot 2026-09-12 172543.png",
+        "type": "image",
+        "name": "Screenshot 2026-09-12 172543.png"
+      }
+    ],
+    "template": "editorial-stack",
+    "specs": [
+      {
+        "label": "Architecture",
+        "value": "Modular Component Hierarchy & Headless Engines"
+      },
+      {
+        "label": "Design System",
+        "value": "Thalassa Aqua Substrate Tokens"
+      },
+      {
+        "label": "Motion Engine",
+        "value": "Hardware Accelerated CSS Caustics & Lenis Smooth Scroll"
+      },
+      {
+        "label": "Mathematical Modeling",
+        "value": "Dynamic SVG Bézier Decay & Sillage Geometry"
+      },
+      {
+        "label": "Accessibility",
+        "value": "WCAG 2.1 AA & Adaptive Motion Switch"
+      }
+    ]
+  },
+  {
     "slug": "flocon-resort",
     "meta": {
       "title": "Flocon Resort",
-      "order": 1,
+      "order": 2,
       "year": "2026",
       "role": "Interactive resort website",
       "stack": "Three.js, React, Next.js",
       "live": "https://ghostbat101.github.io/flocon-resort/",
       "repo": "https://github.com/GhostBat101/flocon-resort",
-      "featured": true
+      "featured": true,
+      "template": "editorial-stack"
     },
     "overview": [
       "A visual website concept for a mountain resort, built around a calm winter setting and an interactive 3D experience.",
@@ -62,13 +124,14 @@
     "slug": "vintage-camera-bd",
     "meta": {
       "title": "Vintage Camera BD",
-      "order": 2,
+      "order": 3,
       "year": "2026",
       "role": "Online camera store and catalogue",
       "stack": "Next.js, TypeScript, PostgreSQL",
       "live": "https://vintage-camera-bd.ghostbat-workspace.workers.dev/",
       "repo": "https://github.com/GhostBat101/Vintage_Camera_BD",
-      "featured": true
+      "featured": true,
+      "template": "editorial-stack"
     },
     "overview": [
       "A website for finding, exploring, and buying vintage cameras.",
@@ -106,75 +169,15 @@
       },
       {
         "label": "Search Engine",
-        "value": "Full-Text Camera Filter & Search"
+        "value": "Full Text Camera Filter & Search"
       },
       {
         "label": "Performance",
-        "value": "Sub-second TTFB & Edge Asset Caching"
+        "value": "Sub second TTFB & Edge Asset Caching"
       },
       {
         "label": "Type Safety",
-        "value": "Strict End-to-End TypeScript"
-      }
-    ]
-  },
-  {
-    "slug": "loam-luxury",
-    "meta": {
-      "title": "Loam Luxury",
-      "order": 3,
-      "year": "2026",
-      "role": "Interactive luxury monograph & sensory fragrance showcase",
-      "stack": "TypeScript, Tailwind CSS, Lenis, Vite",
-      "live": "https://ghostbat101.github.io/loam-luxury/",
-      "repo": "https://github.com/GhostBat101/loam-luxury",
-      "featured": true
-    },
-    "overview": [
-      "An interactive digital monograph and technical demonstration exploring the intersection of luxury perfumery, coastal bathymetry, and modern frontend craft.",
-      "Built around physical materiality—evoking cold sea spray, unrounded crystal flacons, and mineral evaporation without heavy 3D runtimes."
-    ],
-    "details": [
-      "Dynamic SVG Bézier curve simulations.",
-      "Real-time geometric sillage calculation engine.",
-      "60 FPS hardware-accelerated CSS caustics.",
-      "Adaptive dual-layer reduced-motion engine.",
-      "Strict unrounded 0px architectural geometry."
-    ],
-    "cover": {
-      "src": "projects/loam-luxury/media/Recording_2026-09-12_172707-web.mp4",
-      "type": "video",
-      "name": "Recording 2026-09-12 172707.mp4",
-      "poster": "projects/loam-luxury/media/Screenshot 2026-09-12 172543.png"
-    },
-    "gallery": [
-      {
-        "src": "projects/loam-luxury/media/Screenshot 2026-09-12 172543.png",
-        "type": "image",
-        "name": "Screenshot 2026-09-12 172543.png"
-      }
-    ],
-    "template": "text-first-parallax",
-    "specs": [
-      {
-        "label": "Architecture",
-        "value": "Modular Component Hierarchy & Headless Engines"
-      },
-      {
-        "label": "Design System",
-        "value": "Thalassa Aqua Substrate Tokens"
-      },
-      {
-        "label": "Motion Engine",
-        "value": "Hardware-Accelerated CSS Caustics & Lenis Smooth Scroll"
-      },
-      {
-        "label": "Mathematical Modeling",
-        "value": "Dynamic SVG Bézier Decay & Sillage Geometry"
-      },
-      {
-        "label": "Accessibility",
-        "value": "WCAG 2.1 AA & Adaptive Motion Switch"
+        "value": "Strict End to End TypeScript"
       }
     ]
   }
