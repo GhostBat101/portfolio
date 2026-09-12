@@ -4,5 +4,6 @@ role: Interactive resort website
 stack: Three.js, React, Next.js
 live: https://ghostbat101.github.io/flocon-resort/
 repo: https://github.com/GhostBat101/flocon-resort
-order: 1
+order: 2
 featured: true
+template: editorial-stack
