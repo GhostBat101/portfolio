@@ -21,96 +21,96 @@ interface ServiceItem {
 const PROCESS_STAGES: readonly ProcessStage[] = [
   {
     step: '01',
-    label: 'START HERE',
-    heading: 'Understand the idea',
+    label: 'DISCOVERY',
+    heading: 'Define the objective',
     copy: [
-      'We start with your business, your audience, and what you want the website to achieve.',
-      'You do not need a finished plan. If you only have an idea, that\'s enough to start.',
+      'We begin with your brand, your audience, and what success looks like.',
+      'You don\'t need a polished brief—an initial idea is all we need to start.',
     ],
   },
   {
     step: '02',
-    label: 'GET CLEAR',
-    heading: 'Plan the website',
+    label: 'STRATEGY',
+    heading: 'Map the architecture',
     copy: [
-      'I turn the idea into a clear plan for the pages, content, features, and overall structure.',
-      'Before anything gets built, we should both know what we\'re making.',
+      'I translate the concept into a concrete blueprint: page hierarchy, content strategy, and tech stack choices.',
+      'Before building begins, we both share the exact same vision.',
     ],
   },
   {
     step: '03',
-    label: 'FIND THE SHAPE',
-    heading: 'Work out the layout',
+    label: 'WIREFRAMING',
+    heading: 'Shape the experience',
     copy: [
-      'I sketch the important parts of the website and work out how people will move through it.',
-      'This is where we solve the big problems before spending time on small details.',
+      'We test layout flows and key user interactions early.',
+      'This resolves foundational structural questions before investing time into visual polish.',
     ],
   },
   {
     step: '04',
-    label: 'MAKE IT CLEAR',
-    heading: 'Write the content',
+    label: 'CONTENT',
+    heading: 'Clarify the messaging',
     copy: [
-      'Good design needs good words.',
-      'I help shape the text so visitors can understand what you offer, what makes it useful, and what they should do next.',
+      'Design and copy work as one.',
+      'I help sharpen your messaging so visitors immediately understand what you do, why it matters, and how to take action.',
     ],
   },
   {
     step: '05',
-    label: 'BUILD THE LOOK',
-    heading: 'Bring it together',
+    label: 'ART DIRECTION',
+    heading: 'Craft the visual identity',
     copy: [
-      'Once the structure is clear, I develop the visual style.',
-      'This is where the colours, type, images, movement, and small details come together to give the website its own character.',
+      'Once structure is locked, I develop the visual style.',
+      'Typography, tactile colors, responsive layouts, and fluid motion come together to give your website a distinctive voice.',
     ],
   },
   {
     step: '06',
-    label: 'MAKE IT REAL',
-    heading: 'Build the website',
+    label: 'ENGINEERING',
+    heading: 'Build the application',
     copy: [
-      'Then I turn the approved design into a working website.',
-      'I make sure it works across different screen sizes, interactions feel natural, and the important parts work as expected.',
+      'Clean, modular code built for 60 FPS performance and fast load times.',
+      'Engineered for flawless responsiveness across phones, tablets, and desktops.',
     ],
   },
   {
     step: '07',
-    label: 'READY TO GO',
-    heading: 'Test and launch',
+    label: 'LAUNCH',
+    heading: 'Verify and deploy',
     copy: [
-      'Before launch, I check the website, fix problems, and make the final adjustments.',
-      'Then it is ready to go live.',
+      'Comprehensive cross-browser testing, accessibility audits, and performance tuning ensure a smooth, confident release.',
+      'Then your project is live and ready to convert.',
     ],
   },
 ];
 
 const SERVICES: readonly ServiceItem[] = [
   {
-    title: 'Business websites',
-    description: 'A clear and professional website for your company, service, or personal brand.',
+    title: 'Brand & Business Websites',
+    description: 'Fast, high-conversion digital homes that establish immediate credibility and authority.',
   },
   {
-    title: 'Online stores',
-    description: 'Product websites that make it easy for customers to browse, learn, and buy.',
+    title: 'E-Commerce & Catalogs',
+    description: 'Frictionless shopping experiences with lightning-fast search, serverless edge caching, and seamless checkout.',
   },
   {
-    title: 'Custom websites',
-    description: 'Something more specific? I can build a website around your idea instead of forcing it into a ready-made template.',
+    title: 'Interactive 3D & Creative Web',
+    description: 'Immersive WebGL, Three.js, and kinetic typography experiences for brands that want to stand apart.',
   },
   {
-    title: 'Interactive websites',
-    description: 'For projects where the experience matters as much as the information, I can add animation, 3D, and other interactive elements.',
+    title: 'Full-Stack Web Applications',
+    description: 'Headless systems, dynamic dashboards, and custom client portals with resilient backend foundations.',
   },
   {
-    title: 'Web applications',
-    description: 'When a website needs more than pages and forms, I can build the features and systems behind it too.',
+    title: 'Design Systems & Modernization',
+    description: 'Transforming sluggish, fragmented websites into lean, maintainable, and accessible digital assets.',
   },
 ];
 
 const WHY_ME_PARAGRAPHS: readonly string[] = [
-  'There is no large team between you and the person doing the work.',
-  'We can talk through the idea, make decisions together, and adjust things as the project takes shape.',
-  'I also prefer being honest about what a project actually needs. If something adds cost without adding much value, I will tell you.',
+  'No account managers, no layers of communication, and no game of telephone. You talk directly with the engineer designing and coding your project.',
+  'We brainstorm together, make quick decisions, and adapt seamlessly as the product takes shape.',
+  'I prioritize honest technical advice: if a requested feature adds unnecessary cost or complexity without real value, I will tell you upfront.',
 ];
 
 export const AboutSection: React.FC = () => {
@@ -124,14 +124,14 @@ export const AboutSection: React.FC = () => {
         <div className="container">
           <div className={styles.headerBlock}>
             <span className={styles.kicker}>HOW I WORK</span>
-            <h2 className={styles.title}>A clear process from idea to launch.</h2>
+            <h2 className={styles.title}>A disciplined roadmap from concept to deployment.</h2>
             <div className={styles.introBlock}>
-              <p className={styles.introLead}>I don't like jumping straight into code.</p>
+              <p className={styles.introLead}>Great websites start with clarity, not guesswork.</p>
               <p className={styles.introText}>
-                First, I need to understand what you are trying to achieve. Then I work through the structure, design, and details before building the final website.
+                Before writing a single line of code, we align on your goals, user journeys, and technical scope. From early wireframes to production testing, every stage has a defined purpose.
               </p>
               <p className={styles.introSub}>
-                This keeps the project clear and gives us fewer surprises later.
+                This ensures complete transparency, rapid iteration, and zero unwelcome surprises.
               </p>
             </div>
           </div>
@@ -191,9 +191,9 @@ export const AboutSection: React.FC = () => {
         <div className="container">
           <div className={styles.servicesHeader}>
             <span className={styles.kicker}>WHAT I BUILD</span>
-            <h2 className={styles.title}>What can I build for you?</h2>
+            <h2 className={styles.title}>Capabilities designed around your goals.</h2>
             <p className={styles.servicesIntro}>
-              The right website depends on what you need. I can help with projects ranging from straightforward business sites to more involved web applications.
+              Whether you need a high-impact launch landing page, a modern web store, or a bespoke interactive experience, every project is engineered to perform.
             </p>
           </div>
 
@@ -223,7 +223,7 @@ export const AboutSection: React.FC = () => {
               <span className={styles.kicker}>WHY WORK WITH ME</span>
               <span className={styles.whyBadge}>DIRECT COLLABORATION</span>
             </div>
-            <h3 className={styles.whyTitle}>You work directly with the person building your website.</h3>
+            <h3 className={styles.whyTitle}>Direct collaboration with the craftsman building your site.</h3>
             <div className={styles.whyCopyGroup}>
               {WHY_ME_PARAGRAPHS.map((para) => (
                 <p key={para} className={styles.whyPara}>{para}</p>
