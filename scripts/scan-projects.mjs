@@ -326,7 +326,7 @@ export function scanProjects(rootDir) {
     const mediaFiles = fs.existsSync(mediaPath) ? fs.readdirSync(mediaPath) : [];
     const { cover, gallery } = sortMediaFiles(mediaFiles, slug);
 
-    const template = assignTemplate(slug, index);
+    const template = meta.template || assignTemplate(slug, index);
 
     projects.push({
       slug,
