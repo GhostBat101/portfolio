@@ -26,7 +26,7 @@ const HCAPTCHA_SITEKEY = import.meta.env.VITE_HCAPTCHA_SITEKEY;
 const EMAIL_SUBJECTS = [
   '🦇 New project opportunity just landed',
   '🚀 Someone wants to build something cool',
-  '📬 Fresh client inquiry — check it out',
+  '📬 Fresh client inquiry: check it out',
   '✨ A potential client just reached out',
 ];
 
