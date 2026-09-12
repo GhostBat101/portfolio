@@ -38,7 +38,7 @@ const DIRECT_CHANNELS: readonly DirectChannel[] = [
   },
   {
     label: 'WhatsApp',
-    value: '+880 1981 113040',
+    value: 'WhatsApp Me',
     href: 'https://wa.me/8801981113040',
   },
   {
