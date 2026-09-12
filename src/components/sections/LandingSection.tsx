@@ -16,14 +16,14 @@ export const LandingSection: React.FC = () => {
           <span className={styles.kicker}>CREATIVE WEB DEVELOPMENT &amp; DIGITAL CRAFTSMANSHIP</span>
 
           <SplitTextReveal
-            text="High-impact websites built for speed, feel, and conversion."
+            text="High impact websites built for speed, feel, and conversion."
             tag="h1"
             className={styles.headline}
           />
 
           <div className={styles.statementGroup}>
             <p className={styles.statement}>
-              I design and develop high-performance websites and digital tools for founders, brands, and creative teams. Every project is custom-built—combining distinctive editorial aesthetics with rock-solid frontend engineering.
+              I design and develop high performance websites and digital tools for founders, brands, and creative teams. Every project is custom built, combining distinctive editorial aesthetics with robust frontend engineering.
             </p>
             <p className={styles.statementSecondary}>
               No generic templates. No agency layers. Just thoughtful design, fluid interactions, and clean code built around what your business actually needs.
