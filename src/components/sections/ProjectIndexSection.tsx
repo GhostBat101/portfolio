@@ -67,7 +67,7 @@ export const ProjectIndexSection: React.FC<ProjectIndexSectionProps> = ({ projec
             <h2 className={styles.title}>Recent projects &amp; technical showcases.</h2>
             <div className={styles.introGroup}>
               <p className={styles.introText}>
-                Each project represents a distinct engineering challenge—from real-time WebGL viewports and serverless commerce catalogs to mathematical sensory simulations.
+                Each project represents a distinct engineering challenge, ranging from interactive WebGL viewports and serverless commerce catalogs to mathematical sensory simulations.
               </p>
               <p className={styles.introSub}>
                 Built from scratch with modern architecture, fluid motion, and strict attention to detail.
