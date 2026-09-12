@@ -25,7 +25,7 @@ const PROCESS_STAGES: readonly ProcessStage[] = [
     heading: 'Define the objective',
     copy: [
       'We begin with your brand, your audience, and what success looks like.',
-      'You don\'t need a polished brief—an initial idea is all we need to start.',
+      'You don\'t need a polished brief. An initial idea is all we need to start.',
     ],
   },
   {
@@ -78,7 +78,7 @@ const PROCESS_STAGES: readonly ProcessStage[] = [
     label: 'LAUNCH',
     heading: 'Verify and deploy',
     copy: [
-      'Comprehensive cross-browser testing, accessibility audits, and performance tuning ensure a smooth, confident release.',
+      'Comprehensive testing across all browsers, accessibility audits, and performance tuning ensure a smooth, confident release.',
       'Then your project is live and ready to convert.',
     ],
   },
@@ -87,18 +87,18 @@ const PROCESS_STAGES: readonly ProcessStage[] = [
 const SERVICES: readonly ServiceItem[] = [
   {
     title: 'Brand & Business Websites',
-    description: 'Fast, high-conversion digital homes that establish immediate credibility and authority.',
+    description: 'Fast digital homes that convert visitors and establish immediate credibility and authority.',
   },
   {
-    title: 'E-Commerce & Catalogs',
-    description: 'Frictionless shopping experiences with lightning-fast search, serverless edge caching, and seamless checkout.',
+    title: 'Online Stores & Catalogs',
+    description: 'Frictionless shopping experiences with instant search, serverless edge caching, and seamless checkout.',
   },
   {
     title: 'Interactive 3D & Creative Web',
     description: 'Immersive WebGL, Three.js, and kinetic typography experiences for brands that want to stand apart.',
   },
   {
-    title: 'Full-Stack Web Applications',
+    title: 'Full Stack Web Applications',
     description: 'Headless systems, dynamic dashboards, and custom client portals with resilient backend foundations.',
   },
   {
@@ -193,7 +193,7 @@ export const AboutSection: React.FC = () => {
             <span className={styles.kicker}>WHAT I BUILD</span>
             <h2 className={styles.title}>Capabilities designed around your goals.</h2>
             <p className={styles.servicesIntro}>
-              Whether you need a high-impact launch landing page, a modern web store, or a bespoke interactive experience, every project is engineered to perform.
+              Whether you need a high impact launch landing page, a modern web store, or a bespoke interactive experience, every project is engineered to perform.
             </p>
           </div>
 
