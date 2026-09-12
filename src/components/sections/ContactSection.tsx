@@ -138,9 +138,9 @@ export const ContactSection: React.FC = () => {
       <div className="container">
         <div className={styles.ctaBanner} style={{ borderRadius: ctaRadius }}>
           <div className={styles.ctaContent}>
-            <h2 className={styles.ctaHeading}>Let's build something useful.</h2>
+            <h2 className={styles.ctaHeading}>Ready to build something memorable?</h2>
             <p className={styles.ctaCopy}>
-              If you have an idea, a business that needs a better website, or a project you are not sure how to approach, send me a message.
+              Whether you're launching a new venture, upgrading an existing site, or exploring an ambitious interactive concept, let's discuss how to bring it to life.
             </p>
           </div>
           <a
@@ -157,17 +157,17 @@ export const ContactSection: React.FC = () => {
           <div className={styles.channelCol}>
             <span className={styles.kicker}>LET'S TALK</span>
 
-            <h2 className={styles.title}>Have a project in mind?</h2>
+            <h2 className={styles.title}>Tell me about your project.</h2>
 
             <div className={styles.statementGroup}>
               <p className={styles.statement}>
-                Tell me what you are trying to build.
+                Share what you're looking to build.
               </p>
               <p className={styles.statementSecondary}>
-                It does not need to be a perfect brief. A few sentences about your idea, what you need, and when you would like to start is enough.
+                You don't need an exhaustive specification. A brief summary of your idea, key goals, and target timeline is plenty.
               </p>
               <p className={styles.statementSecondary}>
-                I'll take a look and get back to you.
+                I will review your inquiry and get back to you within 24 hours with initial thoughts and next steps.
               </p>
             </div>
 
