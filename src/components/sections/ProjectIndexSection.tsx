@@ -136,6 +136,7 @@ export const ProjectIndexSection: React.FC<ProjectIndexSectionProps> = ({ projec
                 src={resolveAssetUrl(hoveredProject.cover.src)}
                 poster={resolveAssetUrl(hoveredProject.cover.poster ?? '')}
                 className={styles.previewImage}
+                preload="none"
                 autoPlay
                 muted
                 loop
@@ -146,6 +147,7 @@ export const ProjectIndexSection: React.FC<ProjectIndexSectionProps> = ({ projec
                 src={resolveAssetUrl(hoveredProject.cover.src)}
                 alt={hoveredProject.meta.title}
                 className={styles.previewImage}
+                decoding="async"
               />
             )}
             <div className={styles.previewMeta}>
