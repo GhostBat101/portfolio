@@ -164,7 +164,7 @@ export const ContactSection: React.FC = () => {
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaHeading}>Ready to build something memorable?</h2>
             <p className={styles.ctaCopy}>
-              Whether you're launching a new venture, upgrading an existing site, or exploring an ambitious interactive concept, let's discuss how to bring it to life.
+              Whether you're launching a new venture, upgrading an existing site, or exploring an ambitious interactive concept, I can help you bring it to life.
             </p>
           </div>
           <a
@@ -179,7 +179,7 @@ export const ContactSection: React.FC = () => {
 
         <div id="contact-form" className={styles.grid}>
           <div className={styles.channelCol}>
-            <span className={styles.kicker}>LET'S TALK</span>
+            <span className={styles.kicker}>GET IN TOUCH</span>
 
             <h2 className={styles.title}>Tell me about your project.</h2>
 
