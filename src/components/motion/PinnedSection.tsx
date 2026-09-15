@@ -1,4 +1,4 @@
-﻿/**
+/**
  * PinnedSection: Split-scroll layout container pinning media while companion content scrolls.
  * Communicates with: gsap, ScrollTrigger, and TemplateSplitScrollPin.tsx.
  */
@@ -24,6 +24,14 @@ export const PinnedSection: React.FC<PinnedSectionProps> = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const pinRef = useRef<HTMLDivElement | null>(null);
 
+  const gridStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: reverse ? '1fr 1fr' : '1fr 1fr',
+    gap: 'var(--gutter-desktop)',
+    position: 'relative',
+    alignItems: 'start',
+  };
+
   useEffect(() => {
     const container = containerRef.current;
     const pinEl = pinRef.current;
@@ -33,26 +41,22 @@ export const PinnedSection: React.FC<PinnedSectionProps> = ({
     const isMobile = window.innerWidth <= 768;
     if (mediaQuery.matches || isMobile) return;
 
-    const trigger = ScrollTrigger.create({
-      trigger: container,
-      start: 'top top+=80',
-      end: 'bottom bottom',
-      pin: pinEl,
-      pinSpacing: false,
+    let trigger: ScrollTrigger | null = null;
+    const rafId = requestAnimationFrame(() => {
+      trigger = ScrollTrigger.create({
+        trigger: container,
+        start: 'top top+=80',
+        end: 'bottom bottom',
+        pin: pinEl,
+        pinSpacing: false,
+      });
     });
 
     return () => {
-      trigger.kill();
+      cancelAnimationFrame(rafId);
+      trigger?.kill();
     };
   }, []);
-
-  const gridStyle: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: reverse ? '1fr 1fr' : '1fr 1fr',
-    gap: 'var(--gutter-desktop)',
-    position: 'relative',
-    alignItems: 'start',
-  };
 
   return (
     <div ref={containerRef} className={className} style={gridStyle}>
