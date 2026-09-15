@@ -168,7 +168,7 @@ export function sanitizeFileName(name) {
   return name.replace(/[^a-zA-Z0-9._-]/g, '_');
 }
 
-export function sortMediaFiles(fileNames, slug) {
+export function sortMediaFiles(fileNames, slug, publicMediaDir = '') {
   let cover = null;
   const gallery = [];
 
@@ -188,8 +188,24 @@ export function sortMediaFiles(fileNames, slug) {
     let poster;
 
     if (isVideo) {
-      src = `projects/${slug}/media/${sanitizedBase}-web.mp4`;
-      poster = `projects/${slug}/media/${sanitizedBase}-poster.jpg`;
+      const webVideoName = `${sanitizedBase}-web.mp4`;
+      const posterWebpName = `${sanitizedBase}-poster.webp`;
+      const posterJpgName = `${sanitizedBase}-poster.jpg`;
+
+      if (publicMediaDir && fs.existsSync(path.join(publicMediaDir, webVideoName))) {
+        src = `projects/${slug}/media/${webVideoName}`;
+      }
+
+      if (publicMediaDir && fs.existsSync(path.join(publicMediaDir, posterWebpName))) {
+        poster = `projects/${slug}/media/${posterWebpName}`;
+      } else if (publicMediaDir && fs.existsSync(path.join(publicMediaDir, posterJpgName))) {
+        poster = `projects/${slug}/media/${posterJpgName}`;
+      }
+    } else if (ext !== '.svg') {
+      const webpImageName = `${sanitizedBase}.webp`;
+      if (publicMediaDir && fs.existsSync(path.join(publicMediaDir, webpImageName))) {
+        src = `projects/${slug}/media/${webpImageName}`;
+      }
     }
 
     const asset = {
@@ -212,17 +228,23 @@ export function sortMediaFiles(fileNames, slug) {
 
   const POSTER_KEYWORDS = ['screenshot', 'poster', 'thumb', 'thumbnail'];
 
-  if (cover && cover.type === 'video') {
+  if (cover && cover.type === 'video' && !cover.poster) {
     const imageFiles = validFiles.filter((f) => IMAGE_EXTENSIONS.has(path.extname(f).toLowerCase()));
-
     const priorityMatch = imageFiles.find((f) =>
       POSTER_KEYWORDS.some((kw) => path.basename(f, path.extname(f)).toLowerCase().includes(kw))
     );
-
     const screenshotImage = priorityMatch ?? imageFiles[0] ?? null;
 
     if (screenshotImage) {
-      cover = { ...cover, poster: `projects/${slug}/media/${screenshotImage}` };
+      const screenExt = path.extname(screenshotImage).toLowerCase();
+      const screenBase = sanitizeFileName(path.basename(screenshotImage, screenExt));
+      const screenWebp = `${screenBase}.webp`;
+
+      if (screenExt !== '.svg' && publicMediaDir && fs.existsSync(path.join(publicMediaDir, screenWebp))) {
+        cover = { ...cover, poster: `projects/${slug}/media/${screenWebp}` };
+      } else {
+        cover = { ...cover, poster: `projects/${slug}/media/${screenshotImage}` };
+      }
     }
   }
 
@@ -268,7 +290,7 @@ export function getFfmpegPath() {
   return null;
 }
 
-export function processVideo(ffmpegBin, sourceVideoPath, destWebVideoPath, destPosterPath) {
+export function processVideo(ffmpegBin, sourceVideoPath, destWebVideoPath, destPosterWebpPath, destPosterJpgPath) {
   if (!fs.existsSync(destWebVideoPath)) {
     try {
       execSync(
@@ -280,10 +302,41 @@ export function processVideo(ffmpegBin, sourceVideoPath, destWebVideoPath, destP
     }
   }
 
-  if (!fs.existsSync(destPosterPath)) {
+  if (destPosterWebpPath && !fs.existsSync(destPosterWebpPath)) {
     try {
       execSync(
-        `"${ffmpegBin}" -y -ss 00:00:01 -i "${sourceVideoPath}" -vframes 1 -q:v 2 -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" "${destPosterPath}"`,
+        `"${ffmpegBin}" -y -ss 00:00:01 -i "${sourceVideoPath}" -vframes 1 -vf "scale=min(iw\\,1200):-2" -c:v libwebp -quality 80 "${destPosterWebpPath}"`,
+        { stdio: 'ignore' }
+      );
+    } catch {
+    }
+  }
+
+  if (destPosterJpgPath && !fs.existsSync(destPosterJpgPath)) {
+    try {
+      execSync(
+        `"${ffmpegBin}" -y -ss 00:00:01 -i "${sourceVideoPath}" -vframes 1 -q:v 2 -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" "${destPosterJpgPath}"`,
+        { stdio: 'ignore' }
+      );
+    } catch {
+    }
+  }
+}
+
+export function processImage(ffmpegBin, sourceImagePath, destWebpImagePath, destOrigPath) {
+  if (destOrigPath && !fs.existsSync(destOrigPath)) {
+    fs.copyFileSync(sourceImagePath, destOrigPath);
+  }
+
+  const ext = path.extname(sourceImagePath).toLowerCase();
+  if (ext === '.svg') {
+    return;
+  }
+
+  if (destWebpImagePath && !fs.existsSync(destWebpImagePath)) {
+    try {
+      execSync(
+        `"${ffmpegBin}" -y -i "${sourceImagePath}" -vf "scale=min(iw\\,1200):-2" -c:v libwebp -quality 80 "${destWebpImagePath}"`,
         { stdio: 'ignore' }
       );
     } catch {
@@ -323,8 +376,9 @@ export function scanProjects(rootDir) {
     const specs = parseSpecsFile(rawSpecs, meta, slug);
 
     const mediaPath = path.join(folderPath, 'media');
+    const publicMediaPath = path.join(rootDir, 'public', 'projects', slug, 'media');
     const mediaFiles = fs.existsSync(mediaPath) ? fs.readdirSync(mediaPath) : [];
-    const { cover, gallery } = sortMediaFiles(mediaFiles, slug);
+    const { cover, gallery } = sortMediaFiles(mediaFiles, slug, publicMediaPath);
 
     const template = meta.template || assignTemplate(slug, index);
 
@@ -387,8 +441,14 @@ export function syncProjectMedia(rootDir) {
       if (isVideo && ffmpegBin) {
         const sanitizedBase = sanitizeFileName(path.basename(file, ext));
         const destWebVideo = path.join(destMedia, `${sanitizedBase}-web.mp4`);
-        const destPoster = path.join(destMedia, `${sanitizedBase}-poster.jpg`);
-        processVideo(ffmpegBin, sourceFile, destWebVideo, destPoster);
+        const destPosterWebp = path.join(destMedia, `${sanitizedBase}-poster.webp`);
+        const destPosterJpg = path.join(destMedia, `${sanitizedBase}-poster.jpg`);
+        processVideo(ffmpegBin, sourceFile, destWebVideo, destPosterWebp, destPosterJpg);
+      } else if (IMAGE_EXTENSIONS.has(ext) && ffmpegBin) {
+        const sanitizedBase = sanitizeFileName(path.basename(file, ext));
+        const destWebpImage = path.join(destMedia, `${sanitizedBase}.webp`);
+        const destFile = path.join(destMedia, file);
+        processImage(ffmpegBin, sourceFile, destWebpImage, destFile);
       } else {
         const destFile = path.join(destMedia, file);
         if (!fs.existsSync(destFile)) {
@@ -396,6 +456,12 @@ export function syncProjectMedia(rootDir) {
         }
       }
     }
+  }
+
+  const portraitJpg = path.resolve(rootDir, 'public', 'images', 'author-portrait.jpg');
+  const portraitWebp = path.resolve(rootDir, 'public', 'images', 'author-portrait.webp');
+  if (ffmpegBin && fs.existsSync(portraitJpg) && !fs.existsSync(portraitWebp)) {
+    processImage(ffmpegBin, portraitJpg, portraitWebp, portraitJpg);
   }
 }
 
