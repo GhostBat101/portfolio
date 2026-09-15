@@ -13,8 +13,6 @@ export const LandingSection: React.FC = () => {
     <section id="hero" className={styles.landing}>
       <div className={`container ${styles.grid}`}>
         <div className={styles.contentCol}>
-          <span className={styles.kicker}>CREATIVE WEB DEVELOPMENT &amp; DIGITAL CRAFTSMANSHIP</span>
-
           <SplitTextReveal
             text="High impact websites built for speed, feel, and conversion."
             tag="h1"
