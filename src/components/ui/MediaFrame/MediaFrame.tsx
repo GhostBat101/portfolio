@@ -160,7 +160,7 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="none"
               className={styles.mediaElement}
               aria-label={alt || asset.name}
             />
@@ -186,6 +186,7 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({
             src={resolvedSrc}
             alt={alt || asset.name}
             loading="lazy"
+            decoding="async"
             className={styles.mediaElement}
           />
         )}
