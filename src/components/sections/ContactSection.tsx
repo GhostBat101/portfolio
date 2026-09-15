@@ -1,9 +1,9 @@
 /**
- * ContactSection: Contact form with Web3Forms integration, hCaptcha, and direct communication channels.
+ * ContactSection: Contact form with Web3Forms integration, deferred hCaptcha, and direct communication channels.
  * Communicates with: ContactSection.module.css, Input.tsx, Checkbox.tsx, Button.tsx, CustomIcons.tsx, and Web3Forms API.
  */
-import React, { useState, useRef } from 'react';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
+import React, { useState, useRef, useEffect } from 'react';
+import type HCaptcha from '@hcaptcha/react-hcaptcha';
 import { Input } from '@/components/ui/Form/Input';
 import { Checkbox } from '@/components/ui/Form/Checkbox';
 import { Button } from '@/components/ui/Button/Button';
@@ -19,6 +19,7 @@ interface DirectChannel {
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
+const LazyHCaptcha = React.lazy(() => import('@hcaptcha/react-hcaptcha'));
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
 const HCAPTCHA_SITEKEY = import.meta.env.VITE_HCAPTCHA_SITEKEY;
@@ -62,12 +63,35 @@ export const ContactSection: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [captchaToken, setCaptchaToken] = useState('');
   const [honeypot, setHoneypot] = useState('');
+  const [isCaptchaVisible, setIsCaptchaVisible] = useState<boolean>(false);
   const captchaRef = useRef<HCaptcha>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   const ctaRadius = getAsymmetricRadius('contact-cta-banner', 'large');
   const ctaBtnRadius = getAsymmetricRadius('contact-cta-btn', 'medium');
   const formRadius = getAsymmetricRadius('contact-form-plate', 'large');
   const confirmRadius = getAsymmetricRadius('contact-confirm-plate', 'medium');
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsCaptchaVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -134,7 +158,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className={styles.contact}>
+    <section id="contact" ref={sectionRef} className={styles.contact}>
       <div className="container">
         <div className={styles.ctaBanner} style={{ borderRadius: ctaRadius }}>
           <div className={styles.ctaContent}>
@@ -214,7 +238,7 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
             ) : (
-              <form className={styles.form} onSubmit={handleSubmit}>
+              <form className={styles.form} onSubmit={handleSubmit} onFocus={() => setIsCaptchaVisible(true)}>
                 <input
                   type="text"
                   name="botcheck"
@@ -263,12 +287,16 @@ export const ContactSection: React.FC = () => {
                 />
 
                 <div className={styles.captchaWrapper}>
-                  <HCaptcha
-                    sitekey={HCAPTCHA_SITEKEY}
-                    onVerify={(token) => setCaptchaToken(token)}
-                    onExpire={() => setCaptchaToken('')}
-                    ref={captchaRef}
-                  />
+                  {isCaptchaVisible && (
+                    <React.Suspense fallback={null}>
+                      <LazyHCaptcha
+                        sitekey={HCAPTCHA_SITEKEY}
+                        onVerify={(token) => setCaptchaToken(token)}
+                        onExpire={() => setCaptchaToken('')}
+                        ref={captchaRef}
+                      />
+                    </React.Suspense>
+                  )}
                 </div>
 
                 {status === 'error' && errorMessage && (
