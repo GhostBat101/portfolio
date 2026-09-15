@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ParallaxLayer: Scroll-driven parallax wrapper leveraging GSAP ScrollTrigger scrub.
  * Communicates with: gsap, ScrollTrigger, and project layout templates.
  */
@@ -22,6 +22,8 @@ export const ParallaxLayer: React.FC<ParallaxLayerProps> = ({
   style = {},
 }) => {
   const layerRef = useRef<HTMLDivElement | null>(null);
+  const yDistance = speed * 100;
+  const mergedStyle: React.CSSProperties = { willChange: 'transform', ...style };
 
   useEffect(() => {
     const el = layerRef.current;
@@ -30,31 +32,33 @@ export const ParallaxLayer: React.FC<ParallaxLayerProps> = ({
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (mediaQuery.matches) return;
 
-    const yDistance = speed * 100;
-
-    const tween = gsap.fromTo(
-      el,
-      { y: -yDistance * 0.5 },
-      {
-        y: yDistance * 0.5,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        },
-      }
-    );
+    let tween: gsap.core.Tween | null = null;
+    const rafId = requestAnimationFrame(() => {
+      tween = gsap.fromTo(
+        el,
+        { y: -yDistance * 0.5 },
+        {
+          y: yDistance * 0.5,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      );
+    });
 
     return () => {
-      tween.scrollTrigger?.kill();
-      tween.kill();
+      cancelAnimationFrame(rafId);
+      tween?.scrollTrigger?.kill();
+      tween?.kill();
     };
-  }, [speed]);
+  }, [speed, yDistance]);
 
   return (
-    <div ref={layerRef} className={className} style={{ willChange: 'transform', ...style }}>
+    <div ref={layerRef} className={className} style={mergedStyle}>
       {children}
     </div>
   );
