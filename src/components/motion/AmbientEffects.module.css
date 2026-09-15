@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AmbientStyles: Positioning and styling for ambient cursor ink marks and micro-interaction layers.
  * Communicates with: AmbientEffects.tsx and tokens.css.
  */
@@ -6,11 +6,13 @@
   border: 1px solid var(--color-primary);
   border-radius: 4px;
   height: 12px;
+  left: 0;
   pointer-events: none;
   position: fixed;
+  top: 0;
   transform: translate(-50%, -50%);
   width: 12px;
-  will-change: transform, left, top;
+  will-change: transform;
   z-index: 9999;
 }
 
