@@ -3,9 +3,16 @@
  * Communicates with: LandingSection.tsx, tokens.css, and typography.css.
  */
 .landing {
-  border-bottom: var(--border-ink);
-  padding: clamp(var(--space-md), 2.5vw, var(--space-xl)) 0 clamp(var(--space-xl), 4vw, var(--space-2xl));
+  align-items: center;
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(var(--space-xl), 5vw, var(--space-3xl)) 0;
   position: relative;
+}
+
+.landing > .container {
+  width: 100%;
 }
 
 .grid {
