@@ -14,23 +14,23 @@ export const LandingSection: React.FC = () => {
       <div className={`container ${styles.grid}`}>
         <div className={styles.contentCol}>
           <SplitTextReveal
-            text="High impact websites built for speed, feel, and conversion."
+            text="High-performance websites built around your brand, not around a template."
             tag="h1"
             className={styles.headline}
           />
 
           <div className={styles.statementGroup}>
             <p className={styles.statement}>
-              I design and develop high performance websites and digital tools for founders, brands, and creative teams. Every project is custom built, combining distinctive editorial aesthetics with robust frontend engineering.
+              I design and develop custom websites and digital tools for founders, brands, and creative teams. The visual style adapts to your brand, whether that is clean and minimal, bold and expressive, or anything in between.
             </p>
             <p className={styles.statementSecondary}>
-              No generic templates. No agency layers. Just thoughtful design, fluid interactions, and clean code built around what your business actually needs.
+              No agency layers, no off-the-shelf solutions. Direct collaboration, design that fits your brand, and code that serves your actual goals.
             </p>
           </div>
 
           <div className={styles.actions}>
             <Button variant="primary" href="#projects" seed="hero-cta-works">
-              Explore Featured Work
+              See My Work
             </Button>
             <Button variant="ghost" href="#process" seed="hero-cta-process">
               How I Build
