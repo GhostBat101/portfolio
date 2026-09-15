@@ -24,8 +24,8 @@ const PROCESS_STAGES: readonly ProcessStage[] = [
     label: 'DISCOVERY',
     heading: 'Define the objective',
     copy: [
-      'We begin with your brand, your audience, and what success looks like.',
-      'You don\'t need a polished brief. An initial idea is all we need to start.',
+      'I start with your brand, your audience, and what success looks like for you.',
+      'You don\'t need a polished brief. An initial idea is all I need to get started.',
     ],
   },
   {
@@ -34,7 +34,7 @@ const PROCESS_STAGES: readonly ProcessStage[] = [
     heading: 'Map the architecture',
     copy: [
       'I translate the concept into a concrete blueprint: page hierarchy, content strategy, and tech stack choices.',
-      'Before building begins, we both share the exact same vision.',
+      'Before building begins, I ensure the plan and direction are completely aligned with your goals.',
     ],
   },
   {
@@ -42,7 +42,7 @@ const PROCESS_STAGES: readonly ProcessStage[] = [
     label: 'WIREFRAMING',
     heading: 'Shape the experience',
     copy: [
-      'We test layout flows and key user interactions early.',
+      'I map layout flows and test key user interactions early.',
       'This resolves foundational structural questions before investing time into visual polish.',
     ],
   },
@@ -109,7 +109,7 @@ const SERVICES: readonly ServiceItem[] = [
 
 const WHY_ME_PARAGRAPHS: readonly string[] = [
   'No account managers, no layers of communication, and no game of telephone. You talk directly with the engineer designing and coding your project.',
-  'We brainstorm together, make quick decisions, and adapt seamlessly as the product takes shape.',
+  'I brainstorm directly with you, make quick decisions, and adapt smoothly as the product takes shape.',
   'I prioritize honest technical advice: if a requested feature adds unnecessary cost or complexity without real value, I will tell you upfront.',
 ];
 
@@ -128,7 +128,7 @@ export const AboutSection: React.FC = () => {
             <div className={styles.introBlock}>
               <p className={styles.introLead}>Great websites start with clarity, not guesswork.</p>
               <p className={styles.introText}>
-                Before writing a single line of code, we align on your goals, user journeys, and technical scope. From early wireframes to production testing, every stage has a defined purpose.
+                Before writing a single line of code, I align with you on your goals, user journeys, and technical scope. From early wireframes to production testing, every stage has a defined purpose.
               </p>
               <p className={styles.introSub}>
                 This ensures complete transparency, rapid iteration, and zero unwelcome surprises.
