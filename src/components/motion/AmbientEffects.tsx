@@ -1,9 +1,8 @@
-﻿/**
- * AmbientEffects: Ambient pointer ink follower driven by anime.js micro-interaction loops.
- * Communicates with: AmbientEffects.module.css, animejs, and App.tsx.
+/**
+ * AmbientEffects: Ambient pointer ink follower driven by hardware-accelerated RAF transform loop.
+ * Communicates with: AmbientEffects.module.css and App.tsx.
  */
 import React, { useEffect, useRef } from 'react';
-import anime from 'animejs';
 import styles from './AmbientEffects.module.css';
 
 export const AmbientEffects: React.FC = () => {
@@ -17,26 +16,30 @@ export const AmbientEffects: React.FC = () => {
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     if (mediaQuery.matches || isTouch) return;
 
-    let mouseX = -100;
-    let mouseY = -100;
+    let targetX = -100;
+    let targetY = -100;
+    let currentX = -100;
+    let currentY = -100;
+    let animationFrameId: number;
 
     const onMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-
-      anime({
-        targets: cursor,
-        left: mouseX,
-        top: mouseY,
-        duration: 250,
-        easing: 'easeOutQuad',
-      });
+      targetX = e.clientX;
+      targetY = e.clientY;
     };
 
-    window.addEventListener('mousemove', onMouseMove);
+    const updatePosition = () => {
+      currentX += (targetX - currentX) * 0.2;
+      currentY += (targetY - currentY) * 0.2;
+      cursor.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
+      animationFrameId = requestAnimationFrame(updatePosition);
+    };
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    animationFrameId = requestAnimationFrame(updatePosition);
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
