@@ -4,14 +4,12 @@
  */
 .landing {
   border-bottom: var(--border-ink);
-  min-height: calc(100vh - 64px);
-  min-height: calc(100dvh - 64px);
-  padding: clamp(var(--space-xl), 5vw, var(--space-4xl)) 0 clamp(var(--space-xl), 4vw, var(--space-2xl));
+  padding: clamp(var(--space-md), 2.5vw, var(--space-xl)) 0 clamp(var(--space-xl), 4vw, var(--space-2xl));
   position: relative;
 }
 
 .grid {
-  align-items: center;
+  align-items: start;
   display: grid;
   gap: var(--space-xl);
   grid-template-columns: 1fr;
@@ -36,16 +34,6 @@
   .contentCol {
     gap: var(--space-xl);
   }
-}
-
-.kicker {
-  color: var(--color-secondary);
-  font-family: 'Space Mono', monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  line-height: 1.2;
-  text-transform: uppercase;
 }
 
 .headline {
