@@ -33,6 +33,11 @@
   transform: translate(1px, 1px);
 }
 
+.primary:active {
+  box-shadow: 1px 1px 0px var(--color-secondary);
+  transform: translate(1px, 1px) scale(0.96);
+}
+
 .secondary {
   background-color: var(--color-secondary);
   box-shadow: 3px 3px 0px var(--color-tertiary);
@@ -44,6 +49,11 @@
   transform: translate(1px, 1px);
 }
 
+.secondary:active {
+  box-shadow: 1px 1px 0px var(--color-tertiary);
+  transform: translate(1px, 1px) scale(0.96);
+}
+
 .ghost {
   background-color: transparent;
   border-radius: 0px;
@@ -53,6 +63,10 @@
 
 .ghost:hover {
   background-color: var(--color-tertiary);
+}
+
+.ghost:active {
+  transform: scale(0.96);
 }
 
 .fullWidth {
