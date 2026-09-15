@@ -1,5 +1,5 @@
 /**
- * ViteConfig: Vite build configuration with React plugin, path aliases, and base URL resolution.
+ * ViteConfig: Vite build configuration with React plugin, path aliases, base URL resolution, and optimized chunk splitting.
  * Communicates with: package.json, tsconfig.json, and GitHub Pages deployment environment.
  */
 import { defineConfig } from 'vite';
@@ -22,6 +22,14 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-gsap': ['gsap'],
+        },
+      },
+    },
   },
 });
