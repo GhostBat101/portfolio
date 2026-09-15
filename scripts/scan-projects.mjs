@@ -177,6 +177,25 @@ export function sortMediaFiles(fileNames, slug, publicMediaDir = '') {
     return IMAGE_EXTENSIONS.has(ext) || VIDEO_EXTENSIONS.has(ext);
   });
 
+  const POSTER_KEYWORDS = ['screenshot', 'poster', 'thumb', 'thumbnail'];
+  const imageFiles = validFiles.filter((fileName) => IMAGE_EXTENSIONS.has(path.extname(fileName).toLowerCase()));
+  const screenshotMatch = imageFiles.find((fileName) =>
+    POSTER_KEYWORDS.some((kw) => path.basename(fileName, path.extname(fileName)).toLowerCase().includes(kw))
+  ) || imageFiles[0] || null;
+
+  let screenshotPosterPath = null;
+  if (screenshotMatch) {
+    const screenExt = path.extname(screenshotMatch).toLowerCase();
+    const screenBase = sanitizeFileName(path.basename(screenshotMatch, screenExt));
+    const screenWebp = `${screenBase}.webp`;
+
+    if (screenExt !== '.svg' && publicMediaDir && fs.existsSync(path.join(publicMediaDir, screenWebp))) {
+      screenshotPosterPath = `projects/${slug}/media/${screenWebp}`;
+    } else {
+      screenshotPosterPath = `projects/${slug}/media/${screenshotMatch}`;
+    }
+  }
+
   for (const fileName of validFiles) {
     const ext = path.extname(fileName).toLowerCase();
     const base = path.basename(fileName, ext).toLowerCase();
@@ -196,7 +215,9 @@ export function sortMediaFiles(fileNames, slug, publicMediaDir = '') {
         src = `projects/${slug}/media/${webVideoName}`;
       }
 
-      if (publicMediaDir && fs.existsSync(path.join(publicMediaDir, posterWebpName))) {
+      if (screenshotPosterPath) {
+        poster = screenshotPosterPath;
+      } else if (publicMediaDir && fs.existsSync(path.join(publicMediaDir, posterWebpName))) {
         poster = `projects/${slug}/media/${posterWebpName}`;
       } else if (publicMediaDir && fs.existsSync(path.join(publicMediaDir, posterJpgName))) {
         poster = `projects/${slug}/media/${posterJpgName}`;
@@ -226,26 +247,8 @@ export function sortMediaFiles(fileNames, slug, publicMediaDir = '') {
     cover = gallery.shift();
   }
 
-  const POSTER_KEYWORDS = ['screenshot', 'poster', 'thumb', 'thumbnail'];
-
-  if (cover && cover.type === 'video' && !cover.poster) {
-    const imageFiles = validFiles.filter((f) => IMAGE_EXTENSIONS.has(path.extname(f).toLowerCase()));
-    const priorityMatch = imageFiles.find((f) =>
-      POSTER_KEYWORDS.some((kw) => path.basename(f, path.extname(f)).toLowerCase().includes(kw))
-    );
-    const screenshotImage = priorityMatch ?? imageFiles[0] ?? null;
-
-    if (screenshotImage) {
-      const screenExt = path.extname(screenshotImage).toLowerCase();
-      const screenBase = sanitizeFileName(path.basename(screenshotImage, screenExt));
-      const screenWebp = `${screenBase}.webp`;
-
-      if (screenExt !== '.svg' && publicMediaDir && fs.existsSync(path.join(publicMediaDir, screenWebp))) {
-        cover = { ...cover, poster: `projects/${slug}/media/${screenWebp}` };
-      } else {
-        cover = { ...cover, poster: `projects/${slug}/media/${screenshotImage}` };
-      }
-    }
+  if (cover && cover.type === 'video' && screenshotPosterPath) {
+    cover = { ...cover, poster: screenshotPosterPath };
   }
 
   gallery.sort((a, b) => {
