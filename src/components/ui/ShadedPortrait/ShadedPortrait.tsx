@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ShadedPortrait: WebGL canvas component rendering a static Risograph duotone shader for author portraits.
  * Communicates with: ShadedPortrait.module.css, asymmetricRadius.ts, and tokens.css.
  */
@@ -78,7 +78,7 @@ const resolveAssetUrl = (pathStr: string): string => {
 };
 
 export const ShadedPortrait: React.FC<ShadedPortraitProps> = ({
-  imageSrc = 'images/author-portrait.jpg',
+  imageSrc = 'images/author-portrait.webp',
   alt = 'GhostBat101 System Architect Portrait',
   className = '',
   seed = 'ghostbat-hero-portrait',
@@ -88,6 +88,8 @@ export const ShadedPortrait: React.FC<ShadedPortraitProps> = ({
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const renderFrameRef = useRef<(() => void) | null>(null);
+  const hoverValueRef = useRef(0.0);
   const [isHovered, setIsHovered] = useState(false);
   const [isHoverCapable, setIsHoverCapable] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -106,6 +108,11 @@ export const ShadedPortrait: React.FC<ShadedPortraitProps> = ({
       setIsHovered(false);
     }
   }, [isHoverCapable]);
+
+  useEffect(() => {
+    hoverValueRef.current = isHovered && !prefersReducedMotion ? 1.0 : 0.0;
+    renderFrameRef.current?.();
+  }, [isHovered, prefersReducedMotion]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -129,7 +136,8 @@ export const ShadedPortrait: React.FC<ShadedPortraitProps> = ({
   }, []);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -140,7 +148,7 @@ export const ShadedPortrait: React.FC<ShadedPortraitProps> = ({
       { threshold: 0.1 }
     );
 
-    observer.observe(containerRef.current);
+    observer.observe(container);
 
     return () => {
       observer.disconnect();
@@ -233,24 +241,33 @@ export const ShadedPortrait: React.FC<ShadedPortraitProps> = ({
 
     let imageLoaded = false;
 
-    const renderStatic = () => {
-      if (!imageLoaded) return;
-
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const rect = canvas.getBoundingClientRect();
-      const displayWidth = Math.floor(rect.width * dpr);
-      const displayHeight = Math.floor(rect.height * dpr);
-
-      if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
-        canvas.width = displayWidth;
-        canvas.height = displayHeight;
-      }
-
+    const renderFrame = () => {
+      if (!imageLoaded || canvas.width === 0 || canvas.height === 0) return;
+      gl.useProgram(program);
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
-      gl.uniform1f(hoverLocation, isHovered && !prefersReducedMotion ? 1.0 : 0.0);
+      gl.uniform1f(hoverLocation, hoverValueRef.current);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
     };
+
+    renderFrameRef.current = renderFrame;
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const { width, height } = entry.contentRect;
+        if (width === 0 || height === 0) continue;
+        const displayWidth = Math.floor(width * dpr);
+        const displayHeight = Math.floor(height * dpr);
+        if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
+          canvas.width = displayWidth;
+          canvas.height = displayHeight;
+        }
+        renderFrame();
+      }
+    });
+
+    resizeObserver.observe(canvas);
 
     const img = new Image();
     img.crossOrigin = 'anonymous';
@@ -260,14 +277,12 @@ export const ShadedPortrait: React.FC<ShadedPortraitProps> = ({
       gl.bindTexture(gl.TEXTURE_2D, texture);
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
-      renderStatic();
+      renderFrame();
     };
 
-    renderStatic();
-    window.addEventListener('resize', renderStatic);
-
     return () => {
-      window.removeEventListener('resize', renderStatic);
+      resizeObserver.disconnect();
+      renderFrameRef.current = null;
       gl.deleteTexture(texture);
       gl.deleteBuffer(positionBuffer);
       gl.deleteBuffer(texCoordBuffer);
@@ -275,7 +290,7 @@ export const ShadedPortrait: React.FC<ShadedPortraitProps> = ({
       gl.deleteShader(vertexShader);
       gl.deleteShader(fragmentShader);
     };
-  }, [resolvedSrc, isVisible, isHovered, prefersReducedMotion]);
+  }, [resolvedSrc, isVisible]);
 
   return (
     <div
