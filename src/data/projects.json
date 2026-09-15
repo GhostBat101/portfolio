@@ -27,11 +27,11 @@
       "src": "projects/loam-luxury/media/Recording_2026-09-12_172707-web.mp4",
       "type": "video",
       "name": "Recording 2026-09-12 172707.mp4",
-      "poster": "projects/loam-luxury/media/Screenshot 2026-09-12 172543.png"
+      "poster": "projects/loam-luxury/media/Recording_2026-09-12_172707-poster.webp"
     },
     "gallery": [
       {
-        "src": "projects/loam-luxury/media/Screenshot 2026-09-12 172543.png",
+        "src": "projects/loam-luxury/media/Screenshot_2026-09-12_172543.webp",
         "type": "image",
         "name": "Screenshot 2026-09-12 172543.png"
       }
@@ -87,11 +87,11 @@
       "src": "projects/flocon-resort/media/Screen_Recording_2026-09-06_203457-web.mp4",
       "type": "video",
       "name": "Screen Recording 2026-09-06 203457.mp4",
-      "poster": "projects/flocon-resort/media/Screenshot 2026-09-07 203546.png"
+      "poster": "projects/flocon-resort/media/Screen_Recording_2026-09-06_203457-poster.webp"
     },
     "gallery": [
       {
-        "src": "projects/flocon-resort/media/Screenshot 2026-09-07 203546.png",
+        "src": "projects/flocon-resort/media/Screenshot_2026-09-07_203546.webp",
         "type": "image",
         "name": "Screenshot 2026-09-07 203546.png"
       }
@@ -148,11 +148,11 @@
       "src": "projects/vintage-camera-bd/media/Recording_2026-09-04_151749-web.mp4",
       "type": "video",
       "name": "Recording 2026-09-04 151749.mp4",
-      "poster": "projects/vintage-camera-bd/media/Screenshot 2026-09-07 203709.png"
+      "poster": "projects/vintage-camera-bd/media/Recording_2026-09-04_151749-poster.webp"
     },
     "gallery": [
       {
-        "src": "projects/vintage-camera-bd/media/Screenshot 2026-09-07 203709.png",
+        "src": "projects/vintage-camera-bd/media/Screenshot_2026-09-07_203709.webp",
         "type": "image",
         "name": "Screenshot 2026-09-07 203709.png"
       }
