@@ -43,9 +43,10 @@
 .brandText {
   color: var(--color-primary);
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 18px;
+  font-size: clamp(14px, 3.8vw, 18px);
   font-weight: 800;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .desktopNav {
