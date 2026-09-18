@@ -41,7 +41,7 @@ export const LandingSection: React.FC = () => {
         <div className={styles.visualCol}>
           <ShadedPortrait
             seed="ghostbat-hero-portrait"
-            captionTitle="GhostBat101"
+            captionTitle="GhostBat101 (Kamruzzaman)"
             specBadge="Design & Code"
             radiusTier="large"
           />
