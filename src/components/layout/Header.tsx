@@ -79,11 +79,11 @@ export const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
-        <a href="#" className={styles.brandLink} aria-label="GhostBat101 Home" onClick={() => setIsOpen(false)}>
+        <a href="#" className={styles.brandLink} aria-label="GhostBat101 (Kamruzzaman) Home" onClick={() => setIsOpen(false)}>
           <span className={styles.brandMark} style={{ borderRadius: brandRadius }}>
             GB
           </span>
-          <span className={styles.brandText}>GhostBat101</span>
+          <span className={styles.brandText}>GhostBat101 (Kamruzzaman)</span>
         </a>
 
         <nav className={styles.desktopNav} aria-label="Primary Navigation">
