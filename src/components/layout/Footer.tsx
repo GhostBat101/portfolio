@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.brandGroup}>
-          <span className={styles.brandText}>GhostBat101</span>
+          <span className={styles.brandText}>GhostBat101 (Kamruzzaman)</span>
           <span className={styles.tagline}>Web design &amp; development.</span>
           <p className={styles.subline}>
             Building websites with care, from the first idea to the final launch.
